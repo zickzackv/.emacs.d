@@ -1,0 +1,8 @@
+syntax: glob
+.git/
+*.elc
+*~
+.gitignore
+.gitmodules
+.DS_Store
+.cvsignore
