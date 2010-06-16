@@ -29,7 +29,7 @@
 		     "haskell-2.7.0/"
 		     "anything/"
 		     "rails-minor-mode/"
-		     "egg"
+		     ;;"egg"
 		     "rinari"
 		     "rinari"
 		     "eproject"
@@ -65,7 +65,7 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; GIT 
-(require 'egg)
+(require 'magit)
 
 ;; do not write backup files ( ./bli.foo~)
 (setq make-backup-files nil) 
