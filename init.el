@@ -29,7 +29,7 @@
 		     "haskell-2.7.0/"
 		     "anything/"
 		     "rails-minor-mode/"
-		     ;;"egg"
+		     "egg"
 		     "rinari"
 		     "rinari"
 		     "eproject"
@@ -64,8 +64,9 @@
 (require 'bm)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; GIT 
+;; GIT using magit and Egg. 
 (require 'magit)
+(require 'egg)
 
 ;; do not write backup files ( ./bli.foo~)
 (setq make-backup-files nil) 
@@ -273,7 +274,7 @@
 (global-set-key (kbd "<f2>") 'bm-next)
 (global-set-key (kbd "<S-f2>") 'bm-previous)
 
-(global-set-key (kbd "<f12>") 'egg-status)
+(global-set-key (kbd "<f12>") 'magit-status)
 
 
 
