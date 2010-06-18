@@ -31,7 +31,6 @@
 		     "rails-minor-mode/"
 		     "egg"
 		     "rinari"
-		     "rinari"
 		     "eproject"
 		     "color-theme"))
 
@@ -56,7 +55,7 @@
 (require 'eproject)
 (define-project-type rails (generic)
   (look-for "Rakefile")
-  ;; :relevant-files ("\\.rb$" "\\.erb$")
+  :relevant-files ("\\.rb$" "\\.erb$" "\\.yml$")
   :irrelevant-files ("vendor/.*" "tmp/.*" "doc/.*" "log/.*" "script/.*")
 )
       
@@ -111,22 +110,39 @@
 (require 'anything-gtags)
 
 (defvar anything-c-source-eproject-files
-  '((name . "Files in eProject: ")
-    (candidates . (lambda ()
-		    (ignore-errors
-		      (eproject-list-project-files (eproject-root)))))
-    (type . file))
+  '((name . "Files in eProject")
+    (init . (lambda () (if (buffer-file-name)
+			   (setq anything-eproject-root-dir (eproject-maybe-turn-on))
+			 (setq anything-eproject-root-dir 'nil)
+			 )))
+    (candidates . (lambda () (if anything-eproject-root-dir
+				 (eproject-list-project-files anything-eproject-root-dir))))
+    (type . file)
+    )
   "Search for files in the current eProject.")
 
+(defvar anything-c-source-eproject-projects
+  '((name . "Projects")
+    (candidates . (lambda ()
+                    (mapcar (lambda (item)
+                              (car item))
+                            prj-list)))
+    (action ("Open Project" . (lambda (cand)
+                                (eproject-open cand)))
+            ("Close projcet" . (lambda (cand)
+                                 (eproject-close)))))
+  "Open or close eProject projects.")
+
 (setq-default anything-for-files-prefered-list 
-	      '(anything-c-source-ffap-line
+	      '(
+                anything-c-source-ffap-line
 		anything-c-source-ffap-guesser
 		anything-c-source-file-cache
-		anything-c-source-eproject-files
 		anything-c-source-files-in-current-dir+
 		anything-c-source-find-files
+		anything-c-source-eproject-files
 		anything-c-source-recentf
-		;; anything-c-source-eproject-buffers 
+                ;; anything-c-source-eproject-buffers 
 		anything-c-source-buffers+
 		anything-c-source-create))
 
@@ -150,7 +166,6 @@
   "Preconfigured `anything' for buffer."
   (interactive)
   (anything-other-buffer '(anything-c-source-buffers+
-                           anything-c-source-eproject-files
                            anything-c-source-buffer-not-found)
 			 "*anything for buffers*"))
 
