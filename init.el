@@ -98,6 +98,12 @@
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; YAML mode
+(require 'yaml)
+(add-hook 'yaml-mode-hook '(lambda ()
+                             (define-key yaml-mode-map "\C-m" 'newline-and-indent)))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; SLIME
 (setq inferior-lisp-program "/Users/zickzackv/Source/ccl/dx86cl64")
 (require 'slime)
