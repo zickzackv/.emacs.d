@@ -6,3 +6,4 @@ syntax: glob
 .gitmodules
 .DS_Store
 .cvsignore
+recent-files
