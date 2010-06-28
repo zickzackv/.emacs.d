@@ -1981,7 +1981,7 @@ physical offsets."
   "Visit FILE in other-window and goto the current line of the hunk."
   (interactive (egg-hunk-info-at (point)))
   (let ((line (egg-hunk-compute-line-no hunk-header hunk-beg)))
-    (find-file file)
+    (find-file-other-window file)
     (goto-line line)))
 
 (defun egg-section-cmd-toggle-hide-show (nav)
@@ -5950,25 +5950,27 @@ egg in current buffer.\\<egg-minor-mode-map>
     (make-local-variable 'egg-minor-mode)
     (egg-minor-mode 1)))
 
-(let ((git-version (egg-git-to-string "--version")))
-  (when (or
-	 (string-match "\\`git version 1.6." git-version)
-	 (string-match "\\`git version 1.7." git-version))
-    
-    (or (assq 'egg-minor-mode minor-mode-alist)
-	(setq minor-mode-alist
-	      (cons '(egg-minor-mode egg-minor-mode-name) minor-mode-alist)))
+(when (or
+			 (string-match "\\`git version 1.6."
+		    (shell-command-to-string 
+		     (concat egg-git-command " --version")))
+			 (string-match "\\`git version 1.7."
+		    (shell-command-to-string 
+		     (concat egg-git-command " --version"))))
+  (or (assq 'egg-minor-mode minor-mode-alist)
+      (setq minor-mode-alist
+	    (cons '(egg-minor-mode egg-minor-mode-name) minor-mode-alist)))
 
-    (setcdr (or (assq 'egg-minor-mode minor-mode-map-alist)
-		(car (setq minor-mode-map-alist
-			   (cons (list 'egg-minor-mode)
-				 minor-mode-map-alist))))
-	    egg-minor-mode-map)
+  (setcdr (or (assq 'egg-minor-mode minor-mode-map-alist)
+	      (car (setq minor-mode-map-alist
+			 (cons (list 'egg-minor-mode)
+			       minor-mode-map-alist))))
+	  egg-minor-mode-map)
 
-    (if (and (boundp 'vc-handled-backends)
-	     (listp (symbol-value 'vc-handled-backends)))
-	(set 'vc-handled-backends
-	     (delq 'Git (symbol-value 'vc-handled-backends)))))
+  (if (and (boundp 'vc-handled-backends)
+	   (listp (symbol-value 'vc-handled-backends)))
+      (set 'vc-handled-backends
+	   (delq 'Git (symbol-value 'vc-handled-backends))))
 
 
   (add-hook 'find-file-hook 'egg-git-dir)
