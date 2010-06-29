@@ -55,7 +55,7 @@
 (require 'eproject)
 (define-project-type rails (generic)
   (look-for "Rakefile")
-  :relevant-files ("\\.rb$" "\\.erb$" "\\.yml$")
+  :relevant-files ("\\.rb$" "\\.erb$" "\\.yml$" "\\.css$")
   :irrelevant-files ("vendor/.*" "tmp/.*" "doc/.*" "log/.*" "script/.*")
 )
       
@@ -65,7 +65,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; GIT using magit and Egg. 
 (require 'magit)
-(require 'egg)
 
 ;; do not write backup files ( ./bli.foo~)
 (setq make-backup-files nil) 
@@ -147,7 +146,6 @@
 		anything-c-source-file-cache
 		anything-c-source-files-in-current-dir+
 		anything-c-source-find-files
-		anything-c-source-eproject-files
 		anything-c-source-recentf
                 ;; anything-c-source-eproject-buffers 
 		anything-c-source-buffers+
@@ -178,10 +176,11 @@
 
 
 ;; only files and symbols
-(defun anything-symbols ()
+(defun anything-project ()
   (interactive)
   (anything-at-point '(anything-c-source-imenu
 		       anything-c-source-gtags-select
+                       anything-c-source-eproject-files
 		       anything-c-source-org-headline)))
 
 (defun anything-kill-current-buffer ()
@@ -278,9 +277,9 @@
 (global-set-key (kbd "C-a") 'my-beginning)
 
 ;; anything 
-(global-set-key (kbd "C-<return>")	'anything-symbols) ; normal anything cal
-(global-set-key (kbd "C-x C-z")		'anything-symbols) ; anything backup call. E.g. in org-mode
-(global-set-key (kbd "C-z")		'anything-symbols)
+(global-set-key (kbd "C-<return>")	'anything-project) ; normal anything cal
+(global-set-key (kbd "C-x C-z")		'anything-project) ; anything backup call. E.g. in org-mode
+(global-set-key (kbd "C-z")		'anything-project)
 (global-set-key (kbd "C-x k")		'anything-kill-current-buffer)
 (global-set-key (kbd "C-x b")		'anything-for-buffers) 
 (global-set-key (kbd "C-x C-b")		'anything-for-buffers) ; backup
