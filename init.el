@@ -28,20 +28,21 @@
 		     "org-mode/lisp"
 		     "haskell-2.7.0/"
 		     "anything/"
-		     "rails-minor-mode/"
+                     "mog-git-blame"
 		     "egg"
-		     "rinari"
 		     "eproject"
-		     "color-theme"))
+		     "rhtml"))
 
 (let* ((modes-path (expand-file-name "~/.emacs.d/modes/"))
        (dirs       (mapcar '(lambda (d)
 			      (concat modes-path d))
-			   my-mode-dirs)))
+ 			   my-mode-dirs)))
   (add-to-list 'load-path modes-path)
   (mapcar '(lambda (x) 
 	     (add-to-list 'load-path x))
 	  dirs))
+
+
 
 ;; add ports binary dir
 (add-to-list 'exec-path "/opt/local/bin/")
@@ -102,6 +103,10 @@
 (add-to-list 'auto-mode-alist '("\\.rb" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.rake" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.builder" . ruby-mode))
+
+
+
+(add-to-list 'auto-mode-alist '("\\.html\\.erb\\'" . nxml-mode))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; YAML mode
@@ -285,8 +290,9 @@
 
 ;; anything 
 (global-set-key (kbd "C-<return>")	'anything-project) ; normal anything cal
-(global-set-key (kbd "C-x C-z")		'anything-project) ; anything backup call. E.g. in org-mode
-(global-set-key (kbd "C-z")		'anything-project)
+ ; anything backup call. E.g. in org-mode and unbind minize emacs window
+(global-set-key (kbd "C-x C-z")		'anything-project)
+(global-set-key (kbd "s-t")		'anything-project)
 (global-set-key (kbd "C-x k")		'anything-kill-current-buffer)
 (global-set-key (kbd "C-x b")		'anything-for-buffers) 
 (global-set-key (kbd "C-x C-b")		'anything-for-buffers) ; backup
