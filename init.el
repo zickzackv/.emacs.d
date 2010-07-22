@@ -255,6 +255,8 @@
 ;; Display
 (setq inhibit-startup-screen t)
 (tool-bar-mode -1)
+(set-default 'cursor-type 'bar)
+(blink-cursor-mode t)
 
 ;; Smooth scrolling
 (setq mouse-wheel-scroll-amount '(3 ((shift) . 3))) ;; one line at a time
@@ -329,4 +331,4 @@
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
- '(cursor ((t (:background "red" :foreground "red")))))
+ '(cursor ((t (:background "blue" :foreground "black")))))
