@@ -261,7 +261,7 @@
 (setq scroll-step 1) ;; keyboard scroll one line at a time
 (setq scroll-conservatively 10000)
 (global-linum-mode t)
-(setq linum-format "%6d")
+(setq linum-format "%5d")
 
 (show-paren-mode t)
 (set-default 'truncate-lines t)
