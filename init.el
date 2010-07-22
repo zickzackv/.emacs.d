@@ -106,10 +106,6 @@
 (add-to-list 'auto-mode-alist '("\\.rake" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.builder" . ruby-mode))
 
-
-
-(add-to-list 'auto-mode-alist '("\\.html\\.erb\\'" . nxml-mode))
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; YAML mode
 (require 'yaml-mode)
