@@ -24,7 +24,8 @@
 ;;
 ;; add all modes in ~/.emacs.d/modes to load-path
 
-(setq my-mode-dirs '("slime" 
+(setq my-mode-dirs '("color-theme/"
+                     "slime" 
 		     "org-mode/lisp"
 		     "haskell-2.7.0/"
 		     "anything/"
