@@ -7,23 +7,17 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Encoding and Input
 
-(setq default-input-method "german-postfix") ;; toggle with C-\
+(setq default-input-method              "german-postfix") ;toggle with C-\
 (setq default-buffer-file-coding-system 'utf-8)
-(prefer-coding-system       'utf-8)
-(set-default-coding-systems 'utf-8)
-
-;; use german postfix for org mod
-(add-hook 'org-load-hook '(lambda ()
-			    (set-input-method "german-postfix")))
-
-;; do not use tabs
-(setq-default indent-tabs-mode nil) 
+(prefer-coding-system                   'utf-8)
+(set-default-coding-systems             'utf-8)
+(setq-default indent-tabs-mode nil) ;do not use tabs 
+(setq make-backup-files nil)  ;do not write backup files ( ./bli.foo~) 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Load Path
 ;;
 ;; add all modes in ~/.emacs.d/modes to load-path
-
 (setq my-mode-dirs '("color-theme/"
                      "slime" 
 		     "org-mode/lisp"
@@ -88,15 +82,12 @@
   (look-for "Diplom.org")
   :relevant-files ("\\.tex$" "\\.bib$" "\\.hs$"))
       
-;; use bookmarks easyly
-(require 'bm)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; GIT using magit and Egg. 
+;; GIT using magit
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (require 'magit)
 
-;; do not write backup files ( ./bli.foo~)
-(setq make-backup-files nil) 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Haskell mode
@@ -262,6 +253,11 @@
 ;; starting week with mondy
 ;; (setq org-agenda-start-on-weekday 't)	;
 ;; (setq calendar-week-start-day 0)	; calendar weeks start on mondays
+
+;; use german postfix  as default input for org mod
+(add-hook 'org-load-hook '(lambda ()
+			    (set-input-method "german-postfix")))
+
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; 
