@@ -7,24 +7,19 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Encoding and Input
 
-(setq default-input-method "german-postfix") ;; toggle with C-\
+(setq default-input-method              "german-postfix") ;toggle with C-\
 (setq default-buffer-file-coding-system 'utf-8)
-(prefer-coding-system       'utf-8)
-(set-default-coding-systems 'utf-8)
-
-;; use german postfix for org mod
-(add-hook 'org-load-hook '(lambda ()
-			    (set-input-method "german-postfix")))
-
-;; do not use tabs
-(setq-default indent-tabs-mode nil) 
+(prefer-coding-system                   'utf-8)
+(set-default-coding-systems             'utf-8)
+(setq-default indent-tabs-mode nil) ;do not use tabs 
+(setq make-backup-files nil)  ;do not write backup files ( ./bli.foo~) 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Load Path
 ;;
 ;; add all modes in ~/.emacs.d/modes to load-path
-
-(setq my-mode-dirs '("slime" 
+(setq my-mode-dirs '("color-theme/"
+                     "slime" 
 		     "org-mode/lisp"
 		     "haskell-2.7.0/"
 		     "anything/"
@@ -42,15 +37,38 @@
 	     (add-to-list 'load-path x))
 	  dirs))
 
+(add-to-list 'exec-path "/opt/local/bin/"); add ports binary dir
 
-
-;; add ports binary dir
-(add-to-list 'exec-path "/opt/local/bin/")
-
-;; Also advices kill-region and kill-ring-save
+;; advices kill-region and kill-ring-save
 (load "~/.emacs.d/functions.el")
+(require 'color-theme)
+(load "~/.emacs.d/color-theme-tangotango.el")
+(color-theme-tangotango)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Sending mail from within emacs to google
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(setq starttls-use-gnutls t)
+(setq send-mail-function 'smtpmail-send-it
+      message-send-mail-function 'smtpmail-send-it
+      smtpmail-starttls-credentials
+      '(("smtp.gmail.com" 587 nil nil))
+      smtpmail-auth-credentials      (expand-file-name "~/.authinfo")
+      ;;smtpmail-auth-credentials '(("smtp.gmail.com" 587 "fabian.otto@gmail.com" "star -tv"))
+      smtpmail-default-smtp-server "smtp.gmail.com"
+      smtpmail-smtp-server "smtp.gmail.com"
+      smtpmail-smtp-service 587
+      smtpmail-debug-info nil)
+(require 'smtpmail)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Eproject and its proeject definitions
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (require 'eproject)
@@ -64,15 +82,12 @@
   (look-for "Diplom.org")
   :relevant-files ("\\.tex$" "\\.bib$" "\\.hs$"))
       
-;; use bookmarks easyly
-(require 'bm)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; GIT using magit and Egg. 
+;; GIT using magit
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (require 'magit)
 
-;; do not write backup files ( ./bli.foo~)
-(setq make-backup-files nil) 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Haskell mode
@@ -239,6 +254,11 @@
 ;; (setq org-agenda-start-on-weekday 't)	;
 ;; (setq calendar-week-start-day 0)	; calendar weeks start on mondays
 
+;; use german postfix  as default input for org mod
+(add-hook 'org-load-hook '(lambda ()
+			    (set-input-method "german-postfix")))
+
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; 
 ;; YaSnippet
@@ -249,6 +269,8 @@
 ;; Mac OS X 
 
 ;; Display
+;; Use MS Consolas Font :-(
+(set-frame-font "consolas" 't)
 (setq inhibit-startup-screen t)
 (tool-bar-mode -1)
 (set-default 'cursor-type 'bar)
@@ -315,10 +337,13 @@
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
+ '(blink-cursor-mode t)
+ '(column-number-mode t)
  '(recentf-max-saved-items 40)
  '(recentf-mode t)
  '(recentf-save-file "~/.emacs.d/recent-files")
- '(ruby-insert-encoding-magic-comment nil))
+ '(ruby-insert-encoding-magic-comment nil)
+ '(show-paren-mode t))
 
 (custom-set-faces
   ;; custom-set-faces was added by Custom.
@@ -326,3 +351,4 @@
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
  '(cursor ((t (:background "blue" :foreground "black")))))
+
