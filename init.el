@@ -51,18 +51,17 @@
 ;; Sending mail from within emacs to google
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(setq starttls-use-gnutls t)
-(setq send-mail-function 'smtpmail-send-it
-      message-send-mail-function 'smtpmail-send-it
-      smtpmail-starttls-credentials
-      '(("smtp.gmail.com" 587 nil nil))
+(setq starttls-use-gnutls t
+	  send-mail-function             'smtpmail-send-it
+      message-send-mail-function     'smtpmail-send-it
+      smtpmail-starttls-credentials  '(("smtp.gmail.com" 587 nil nil))
       smtpmail-auth-credentials      (expand-file-name "~/.authinfo")
-      ;;smtpmail-auth-credentials '(("smtp.gmail.com" 587 "fabian.otto@gmail.com" "star -tv"))
-      smtpmail-default-smtp-server "smtp.gmail.com"
-      smtpmail-smtp-server "smtp.gmail.com"
-      smtpmail-smtp-service 587
-      smtpmail-debug-info nil)
-(require 'smtpmail)
+      smtpmail-default-smtp-server   "smtp.gmail.com"
+      smtpmail-smtp-server           "smtp.gmail.com"
+      smtpmail-smtp-service          587
+      smtpmail-debug-info            nil)
+
+(autoload 'compose-mail           "smtpmail" "Toggle whitespace visualization."        t)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
