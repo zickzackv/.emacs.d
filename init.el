@@ -11,7 +11,7 @@
 (setq default-buffer-file-coding-system 'utf-8)
 (prefer-coding-system                   'utf-8)
 (set-default-coding-systems             'utf-8)
-(setq-default indent-tabs-mode nil) ;do not use tabs 
+;; (setq-default indent-tabs-mode nil) ;do not use tabs 
 (setq make-backup-files nil)  ;do not write backup files ( ./bli.foo~) 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -114,12 +114,50 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Ruby mode
 ;; 
-(add-hook 'ruby-mode-hook (lambda ()
-			    (setq ruby-insert-encoding-magic-comment nil)))
-
 (add-to-list 'auto-mode-alist '("\\.rb" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.rake" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.builder" . ruby-mode))
+
+
+(setq-default tab-width 4) ; or any other preferred value
+
+(setq cua-auto-tabify-rectangles nil)
+(defadvice align (around smart-tabs activate)
+  (let ((indent-tabs-mode nil)) ad-do-it))
+(defadvice align-regexp (around smart-tabs activate)
+  (let ((indent-tabs-mode nil)) ad-do-it))
+(defadvice indent-relative (around smart-tabs activate)
+  (let ((indent-tabs-mode nil)) ad-do-it))
+(defadvice indent-according-to-mode (around smart-tabs activate)
+  (let ((indent-tabs-mode indent-tabs-mode))
+    (if (memq indent-line-function
+              '(indent-relative
+                indent-relative-maybe))
+        (setq indent-tabs-mode nil))
+ ad-do-it))
+
+(defmacro smart-tabs-advice (function offset)
+  (defvaralias offset 'tab-width)
+  `(defadvice ,function (around smart-tabs activate)
+     (cond
+      (indent-tabs-mode
+       (save-excursion
+         (beginning-of-line)
+         (while (looking-at "\t*\\( +\\)\t+")
+           (replace-match "" nil nil nil 1)))
+       (setq tab-width tab-width)
+       (let ((tab-width fill-column)
+                 (,offset fill-column))
+             ad-do-it))
+      (t
+       ad-do-it))))
+
+(add-hook 'ruby-mode-hook (lambda ()
+			    (setq ruby-insert-encoding-magic-comment nil)))
+
+(smart-tabs-advice ruby-indent-line ruby-indent-level)
+(setq ruby-indent-tabs-mode t)
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; YAML mode
