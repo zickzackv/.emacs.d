@@ -40,9 +40,8 @@
 
 ;; advices kill-region and kill-ring-save
 (load "~/.emacs.d/functions.el")
-(require 'color-theme)
-(load "~/.emacs.d/color-theme-tangotango.el")
-(color-theme-tangotango)
+
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -325,6 +324,13 @@
 (show-paren-mode t)
 (set-default 'truncate-lines t)
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Colors
+(require 'color-theme)
+(load "~/.emacs.d/color-theme-tangotango.el")
+(color-theme-tangotango)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Rename buffers uniquly with trailing path names
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'forward)
