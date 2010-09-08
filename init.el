@@ -11,8 +11,7 @@
 (setq default-buffer-file-coding-system 'utf-8)
 (prefer-coding-system                   'utf-8)
 (set-default-coding-systems             'utf-8)
-;; (setq-default indent-tabs-mode nil) ;do not use tabs 
-(setq make-backup-files nil)  ;do not write backup files ( ./bli.foo~) 
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Load Path
@@ -375,6 +374,7 @@
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
+ '(make-backup-files nil)  ; do not write backup files ( ./bli.foo~) 
  '(blink-cursor-mode t)
  '(column-number-mode t)
  '(recentf-max-saved-items 40)
