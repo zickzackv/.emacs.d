@@ -306,7 +306,7 @@
 
 ;; Display
 ;; Use MS Consolas Font :-(
-(set-frame-font "consolas" 't)
+(set-default-font "consolas" 't)
 (setq inhibit-startup-screen t)
 (tool-bar-mode -1)
 (set-default 'cursor-type 'bar)
