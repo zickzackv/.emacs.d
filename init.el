@@ -307,10 +307,10 @@
 ;; Display
 ;; Use MS Consolas Font :-(
 (set-default-font "consolas" 't)
-(setq inhibit-startup-screen t)
-(tool-bar-mode -1)
-(set-default 'cursor-type 'bar)
-(blink-cursor-mode t)
+(setq inhibit-startup-screen  t)
+(tool-bar-mode               -1)
+(set-default 'cursor-type  'bar)
+(blink-cursor-mode            t)
 
 ;; Smooth scrolling
 (setq mouse-wheel-scroll-amount '(3 ((shift) . 3))) ;; one line at a time
@@ -318,11 +318,11 @@
 (setq mouse-wheel-follow-mouse 't) ;; scroll window under mouse
 (setq scroll-step 1) ;; keyboard scroll one line at a time
 (setq scroll-conservatively 10000)
+
 (global-linum-mode t)
-(setq linum-format "%5d")
+(setq linum-format "%5d")				; 5 digits for linenumbers
 
 (show-paren-mode t)
-(set-default 'truncate-lines t)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Colors
@@ -339,27 +339,27 @@
 ;; Keyboard
 (require 'sequential-command)
 ;; repeated invocation of this command iterates its command list
-(define-sequential-command my-end end-of-line seq-return)
+(define-sequential-command my-end        end-of-line seq-return)
 (define-sequential-command my-beginning  back-to-indentation beginning-of-line seq-return)
 
-(global-set-key (kbd "s-§") 'other-frame); additional to s-`
-(global-set-key (kbd "s-<return>") 'execute-extended-command)
+(global-set-key (kbd "s-§")          'other-frame); additional to s-`
+(global-set-key (kbd "s-<return>")   'execute-extended-command)
 (global-set-key (kbd "s-<kp-enter>") 'execute-extended-command)
 ;; using cursor keys to switch between open windows and frames
 ;; left, right keys switch between frames
 ;; up, down keys switch to open windows over all frames
-(global-set-key (kbd "s-<down>") 'next-multiframe-window)
-(global-set-key (kbd "s-<up>") 'previous-multiframe-window)
-(global-set-key (kbd "C-e") 'my-end)
-(global-set-key (kbd "C-a") 'my-beginning)
-
-;; anything 
-(global-set-key (kbd "C-x C-z")		'anything-project) ; anything backup call. E.g. in org-mode
-(global-set-key (kbd "s-t")		'anything-project)
-(global-set-key (kbd "C-x k")		'anything-kill-current-buffer)
-(global-set-key (kbd "C-x b")		'anything-for-buffers) 
-(global-set-key (kbd "C-x C-b")		'anything-for-buffers) ; backup
-(global-set-key (kbd "C-x C-f")		'anything-find-my-files) 
+(global-set-key (kbd "s-<down>")     'next-multiframe-window)
+(global-set-key (kbd "s-<up>")       'previous-multiframe-window)
+(global-set-key (kbd "C-e")          'my-end)
+(global-set-key (kbd "C-a")          'my-beginning)
+								     
+;; anything 					     
+(global-set-key (kbd "C-x C-z")	     'anything-project) ; anything backup call. E.g. in org-mode
+(global-set-key (kbd "s-t")		     'anything-project)
+(global-set-key (kbd "C-x k")	     'anything-kill-current-buffer)
+(global-set-key (kbd "C-x b")	     'anything-for-buffers) 
+(global-set-key (kbd "C-x C-b")	     'anything-for-buffers) ; backup
+(global-set-key (kbd "C-x C-f")	     'anything-find-my-files) 
 
 (define-key global-map [menu-bar tools remember] '("Remember Something" . remember-other-frame))
 
@@ -381,6 +381,7 @@
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
  '(make-backup-files nil)  ; do not write backup files ( ./bli.foo~) 
+ '(truncate-lines t)
  '(blink-cursor-mode t)
  '(column-number-mode t)
  '(recentf-max-saved-items 40)
