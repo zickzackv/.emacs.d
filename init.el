@@ -20,13 +20,13 @@
 ;; add all modes in ~/.emacs.d/modes to load-path
 (setq my-mode-dirs '("color-theme/"
                      "slime" 
-		     "org-mode/lisp"
-		     "haskell-2.7.0/"
-		     "anything/"
+					 "org-mode/lisp"
+					 "haskell-2.7.0/"
+					 "anything/"
                      "mog-git-blame"
-		     "egg"
-		     "eproject"
-		     "rhtml"))
+					 "egg"
+					 "eproject"
+					 "rhtml"))
 
 (let* ((modes-path (expand-file-name "~/.emacs.d/modes/"))
        (dirs       (mapcar '(lambda (d)
