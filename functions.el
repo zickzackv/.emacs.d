@@ -34,3 +34,21 @@
     (interactive "DDirectory: ")
     (shell-command
      (format "%s -f %s/TAGS -e -R %s" path-to-ctags dir-name dir-name)))
+
+;; Calculate money from hours and minutes as integers
+(defun money-per-hour-and-minutes (money hours minutes)
+  (+ 
+   (* hours money)
+   (* (/ minutes 60.0) 
+      money)))
+
+
+;; convert a time (hh:mm) string to money
+(defun time-string-to-money (money string)   
+  (let ((h-m (mapcar 'string-to-number
+                   (split-string string ":"))))
+    (apply 'money-per-hour-and-minutes money h-m)))
+
+
+
+
