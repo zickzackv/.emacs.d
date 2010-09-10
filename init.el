@@ -11,7 +11,7 @@
 (setq default-buffer-file-coding-system 'utf-8)
 (prefer-coding-system                   'utf-8)
 (set-default-coding-systems             'utf-8)
-(setq-default indent-tabs-mode nil) ;do not use tabs 
+;; (setq-default indent-tabs-mode nil) ;do not use tabs 
 (setq make-backup-files nil)  ;do not write backup files ( ./bli.foo~) 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -20,13 +20,13 @@
 ;; add all modes in ~/.emacs.d/modes to load-path
 (setq my-mode-dirs '("color-theme/"
                      "slime" 
-		     "org-mode/lisp"
-		     "haskell-2.7.0/"
-		     "anything/"
+					 "org-mode/lisp"
+					 "haskell-2.7.0/"
+					 "anything/"
                      "mog-git-blame"
-		     "egg"
-		     "eproject"
-		     "rhtml"))
+					 "egg"
+					 "eproject"
+					 "rhtml"))
 
 (let* ((modes-path (expand-file-name "~/.emacs.d/modes/"))
        (dirs       (mapcar '(lambda (d)
@@ -116,12 +116,50 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Ruby mode
 ;; 
-(add-hook 'ruby-mode-hook (lambda ()
-			    (setq ruby-insert-encoding-magic-comment nil)))
-
 (add-to-list 'auto-mode-alist '("\\.rb" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.rake" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.builder" . ruby-mode))
+
+
+(setq-default tab-width 4) ; or any other preferred value
+
+(setq cua-auto-tabify-rectangles nil)
+(defadvice align (around smart-tabs activate)
+  (let ((indent-tabs-mode nil)) ad-do-it))
+(defadvice align-regexp (around smart-tabs activate)
+  (let ((indent-tabs-mode nil)) ad-do-it))
+(defadvice indent-relative (around smart-tabs activate)
+  (let ((indent-tabs-mode nil)) ad-do-it))
+(defadvice indent-according-to-mode (around smart-tabs activate)
+  (let ((indent-tabs-mode indent-tabs-mode))
+    (if (memq indent-line-function
+              '(indent-relative
+                indent-relative-maybe))
+        (setq indent-tabs-mode nil))
+ ad-do-it))
+
+(defmacro smart-tabs-advice (function offset)
+  (defvaralias offset 'tab-width)
+  `(defadvice ,function (around smart-tabs activate)
+     (cond
+      (indent-tabs-mode
+       (save-excursion
+         (beginning-of-line)
+         (while (looking-at "\t*\\( +\\)\t+")
+           (replace-match "" nil nil nil 1)))
+       (setq tab-width tab-width)
+       (let ((tab-width fill-column)
+                 (,offset fill-column))
+             ad-do-it))
+      (t
+       ad-do-it))))
+
+(add-hook 'ruby-mode-hook (lambda ()
+			    (setq ruby-insert-encoding-magic-comment nil)))
+
+(smart-tabs-advice ruby-indent-line ruby-indent-level)
+(setq ruby-indent-tabs-mode t)
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; YAML mode
@@ -271,6 +309,8 @@
 ;; Mac OS X 
 
 ;; Display
+;; Use MS Consolas Font :-(
+(set-frame-font "consolas" 't)
 (setq inhibit-startup-screen t)
 (tool-bar-mode -1)
 (set-default 'cursor-type 'bar)
@@ -351,5 +391,8 @@
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
+
  '(cursor ((t (:background "blue" :foreground "black"))))
  '(hl-line ((t (:background "black")))))
+
+
