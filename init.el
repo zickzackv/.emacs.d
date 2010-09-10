@@ -337,14 +337,19 @@
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
+ '(blink-cursor-mode t)
+ '(column-number-mode t)
+ '(global-hl-line-mode t)
  '(recentf-max-saved-items 40)
  '(recentf-mode t)
  '(recentf-save-file "~/.emacs.d/recent-files")
- '(ruby-insert-encoding-magic-comment nil))
+ '(ruby-insert-encoding-magic-comment nil)
+ '(show-paren-mode t))
 
 (custom-set-faces
   ;; custom-set-faces was added by Custom.
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
- '(cursor ((t (:background "blue" :foreground "black")))))
+ '(cursor ((t (:background "blue" :foreground "black"))))
+ '(hl-line ((t (:background "black")))))
