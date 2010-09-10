@@ -66,6 +66,8 @@
       smtpmail-debug-info nil)
 (require 'smtpmail)
 
+(add-hook 'message-setup-hook '(lambda ()
+                                  (set-input-method "german-postfix")))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Eproject and its proeject definitions
