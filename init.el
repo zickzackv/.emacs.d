@@ -11,8 +11,7 @@
 (setq default-buffer-file-coding-system 'utf-8)
 (prefer-coding-system                   'utf-8)
 (set-default-coding-systems             'utf-8)
-;; (setq-default indent-tabs-mode nil) ;do not use tabs 
-(setq make-backup-files nil)  ;do not write backup files ( ./bli.foo~) 
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Load Path
@@ -41,9 +40,8 @@
 
 ;; advices kill-region and kill-ring-save
 (load "~/.emacs.d/functions.el")
-(require 'color-theme)
-(load "~/.emacs.d/color-theme-tangotango.el")
-(color-theme-tangotango)
+
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -52,19 +50,17 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Sending mail from within emacs to google
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(setq starttls-use-gnutls t)
-(setq send-mail-function 'smtpmail-send-it
-      message-send-mail-function 'smtpmail-send-it
-      smtpmail-starttls-credentials
-      '(("smtp.gmail.com" 587 nil nil))
+(setq starttls-use-gnutls t
+	  send-mail-function             'smtpmail-send-it
+      message-send-mail-function     'smtpmail-send-it
+      smtpmail-starttls-credentials  '(("smtp.gmail.com" 587 nil nil))
       smtpmail-auth-credentials      (expand-file-name "~/.authinfo")
-      ;;smtpmail-auth-credentials '(("smtp.gmail.com" 587 "fabian.otto@gmail.com" "star -tv"))
-      smtpmail-default-smtp-server "smtp.gmail.com"
-      smtpmail-smtp-server "smtp.gmail.com"
-      smtpmail-smtp-service 587
-      smtpmail-debug-info nil)
-(require 'smtpmail)
+      smtpmail-default-smtp-server   "smtp.gmail.com"
+      smtpmail-smtp-server           "smtp.gmail.com"
+      smtpmail-smtp-service          587
+      smtpmail-debug-info            nil)
+
+(autoload 'compose-mail           "smtpmail" "Toggle whitespace visualization."        t)
 
 (add-hook 'message-setup-hook '(lambda ()
                                   (set-input-method "german-postfix")))
@@ -316,11 +312,11 @@
 
 ;; Display
 ;; Use MS Consolas Font :-(
-(set-frame-font "consolas" 't)
-(setq inhibit-startup-screen t)
-(tool-bar-mode -1)
-(set-default 'cursor-type 'bar)
-(blink-cursor-mode t)
+(set-default-font "consolas" 't)
+(setq inhibit-startup-screen  t)
+(tool-bar-mode               -1)
+(set-default 'cursor-type  'bar)
+(blink-cursor-mode            t)
 
 ;; Smooth scrolling
 (setq mouse-wheel-scroll-amount '(3 ((shift) . 3))) ;; one line at a time
@@ -328,12 +324,19 @@
 (setq mouse-wheel-follow-mouse 't) ;; scroll window under mouse
 (setq scroll-step 1) ;; keyboard scroll one line at a time
 (setq scroll-conservatively 10000)
+
 (global-linum-mode t)
-(setq linum-format "%5d")
+(setq linum-format "%5d")				; 5 digits for linenumbers
 
 (show-paren-mode t)
-(set-default 'truncate-lines t)
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Colors
+(require 'color-theme)
+(load "~/.emacs.d/color-theme-tangotango.el")
+(color-theme-tangotango)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Rename buffers uniquly with trailing path names
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'forward)
@@ -342,27 +345,27 @@
 ;; Keyboard
 (require 'sequential-command)
 ;; repeated invocation of this command iterates its command list
-(define-sequential-command my-end end-of-line seq-return)
+(define-sequential-command my-end        end-of-line seq-return)
 (define-sequential-command my-beginning  back-to-indentation beginning-of-line seq-return)
 
-(global-set-key (kbd "s-§") 'other-frame); additional to s-`
-(global-set-key (kbd "s-<return>") 'execute-extended-command)
+(global-set-key (kbd "s-§")          'other-frame); additional to s-`
+(global-set-key (kbd "s-<return>")   'execute-extended-command)
 (global-set-key (kbd "s-<kp-enter>") 'execute-extended-command)
 ;; using cursor keys to switch between open windows and frames
 ;; left, right keys switch between frames
 ;; up, down keys switch to open windows over all frames
-(global-set-key (kbd "s-<down>") 'next-multiframe-window)
-(global-set-key (kbd "s-<up>") 'previous-multiframe-window)
-(global-set-key (kbd "C-e") 'my-end)
-(global-set-key (kbd "C-a") 'my-beginning)
-
-;; anything 
-(global-set-key (kbd "C-x C-z")		'anything-project) ; anything backup call. E.g. in org-mode
-(global-set-key (kbd "s-t")		'anything-project)
-(global-set-key (kbd "C-x k")		'anything-kill-current-buffer)
-(global-set-key (kbd "C-x b")		'anything-for-buffers) 
-(global-set-key (kbd "C-x C-b")		'anything-for-buffers) ; backup
-(global-set-key (kbd "C-x C-f")		'anything-find-my-files) 
+(global-set-key (kbd "s-<down>")     'next-multiframe-window)
+(global-set-key (kbd "s-<up>")       'previous-multiframe-window)
+(global-set-key (kbd "C-e")          'my-end)
+(global-set-key (kbd "C-a")          'my-beginning)
+								     
+;; anything 					     
+(global-set-key (kbd "C-x C-z")	     'anything-project) ; anything backup call. E.g. in org-mode
+(global-set-key (kbd "s-t")		     'anything-project)
+(global-set-key (kbd "C-x k")	     'anything-kill-current-buffer)
+(global-set-key (kbd "C-x b")	     'anything-for-buffers) 
+(global-set-key (kbd "C-x C-b")	     'anything-for-buffers) ; backup
+(global-set-key (kbd "C-x C-f")	     'anything-find-my-files) 
 
 (define-key global-map [menu-bar tools remember] '("Remember Something" . remember-other-frame))
 
@@ -385,20 +388,21 @@
   ;; If there is more than one, they won't work right.
  '(blink-cursor-mode t)
  '(column-number-mode t)
+ '(make-backup-files nil)
  '(global-hl-line-mode t)
  '(recentf-max-saved-items 40)
  '(recentf-mode t)
  '(recentf-save-file "~/.emacs.d/recent-files")
  '(ruby-insert-encoding-magic-comment nil)
- '(show-paren-mode t))
+ '(show-paren-mode t)
+ '(truncate-lines t))
 
 (custom-set-faces
   ;; custom-set-faces was added by Custom.
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
-
+ '(anything-file-name ((t (:foreground "White"))))
+ '(cursor ((t (:background "blue" :foreground "black")))))
  '(cursor ((t (:background "blue" :foreground "black"))))
  '(hl-line ((t (:background "black")))))
-
-
