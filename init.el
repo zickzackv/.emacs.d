@@ -22,8 +22,7 @@
 					 "org-mode/lisp"
 					 "haskell-2.7.0/"
 					 "anything/"
-                     "mog-git-blame"
-					 "egg"
+					 "magit/"
 					 "eproject"
 					 "rhtml"))
 
