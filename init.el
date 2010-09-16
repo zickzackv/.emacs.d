@@ -62,6 +62,8 @@
 
 (autoload 'compose-mail           "smtpmail" "Toggle whitespace visualization."        t)
 
+(add-hook 'message-setup-hook '(lambda ()
+                                  (set-input-method "german-postfix")))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Eproject and its proeject definitions
@@ -381,6 +383,7 @@
  '(blink-cursor-mode t)
  '(column-number-mode t)
  '(make-backup-files nil)
+ '(global-hl-line-mode t)
  '(recentf-max-saved-items 40)
  '(recentf-mode t)
  '(recentf-save-file "~/.emacs.d/recent-files")
@@ -395,4 +398,5 @@
   ;; If there is more than one, they won't work right.
  '(anything-file-name ((t (:foreground "White"))))
  '(cursor ((t (:background "blue" :foreground "black")))))
-
+ '(cursor ((t (:background "blue" :foreground "black"))))
+ '(hl-line ((t (:background "black")))))
