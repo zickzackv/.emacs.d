@@ -402,6 +402,4 @@
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
  '(anything-file-name ((t (:foreground "White"))))
- '(cursor ((t (:background "blue" :foreground "black")))))
- '(cursor ((t (:background "blue" :foreground "black"))))
  '(hl-line ((t (:background "black")))))
