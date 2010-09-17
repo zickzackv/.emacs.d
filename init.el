@@ -387,12 +387,13 @@
   ;; If there is more than one, they won't work right.
  '(blink-cursor-mode t)
  '(column-number-mode t)
- '(make-backup-files nil)
  '(global-hl-line-mode t)
+ '(make-backup-files nil)
  '(recentf-max-saved-items 40)
  '(recentf-mode t)
  '(recentf-save-file "~/.emacs.d/recent-files")
  '(ruby-insert-encoding-magic-comment nil)
+ '(safe-local-variable-values (quote ((encoding . utf-8))))
  '(show-paren-mode t)
  '(truncate-lines t))
 
