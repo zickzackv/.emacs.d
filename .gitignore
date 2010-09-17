@@ -1,0 +1,7 @@
+.git/
+*.elc
+*~
+.gitignore
+.DS_Store
+.cvsignore
+recent-files

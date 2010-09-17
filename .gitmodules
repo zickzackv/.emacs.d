@@ -1,0 +1,3 @@
+[submodule "modes/magit"]
+	path = modes/magit
+	url = git://github.com/philjackson/magit.git
