@@ -393,7 +393,7 @@
  '(recentf-mode t)
  '(recentf-save-file "~/.emacs.d/recent-files")
  '(ruby-insert-encoding-magic-comment nil)
- '(safe-local-variable-values (quote ((encoding . utf-8))))
+ '(safe-local-variable-values (quote ((Package . User) (Syntax . Common-Lisp) (Package . CCL) (encoding . utf-8))))
  '(show-paren-mode t)
  '(truncate-lines t))
 
