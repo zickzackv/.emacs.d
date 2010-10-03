@@ -1,3 +1,6 @@
-[submodule "modes/magit"]
-	path = modes/magit
+[submodule "modes/slime.git"]
+	path = modes/slime.git
+	url = git://github.com/nablaone/slime.git
+[submodule "modes/magit.git"]
+	path = modes/magit.git
 	url = git://github.com/philjackson/magit.git
