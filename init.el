@@ -40,7 +40,6 @@
 ;; advices kill-region and kill-ring-save
 (load "~/.emacs.d/functions.el")
 
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -89,7 +88,8 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Haskell mode
-(load "~/.emacs.d/modes/haskell-mode-2.7.0/haskell-site-file.el")
+(autoload 'haskell-mode "~/.emacs.d/modes/haskell-mode-2.7.0/haskell-site-file.el" 
+  "Loading Haskell mode only when needed." t)
 (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
 ;; (turn-on-haskell-indentation)		
@@ -159,16 +159,16 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; YAML mode
-(require 'yaml-mode)
+
 (add-to-list 'auto-mode-alist '("\\.yml" . yaml-mode))
 (add-hook 'yaml-mode-hook '(lambda ()
                              (define-key yaml-mode-map "\C-m" 'newline-and-indent)))
-
+(autoload  'yaml-mode "yaml-mode.el" "YAML Mode" t)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; SLIME
 (setq inferior-lisp-program "/Users/zickzackv/Source/ccl/dx86cl64")
-(require 'slime)
 (slime-setup '(slime-repl))
+(autoload 'slime "slime" "Interactive Lisp Development Environment" t)
 
 (autoload 'paredit-mode "paredit"
   "Minor mode for pseudo-structurally editing Lisp code." t)
