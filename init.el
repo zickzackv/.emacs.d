@@ -35,12 +35,13 @@
 
 (add-to-list 'exec-path "/opt/local/bin/"); add ports binary dir
 
-;; advices kill-region and kill-ring-save
-(load "functions.el")
-(load "eproject.el")
-(load "anything.el")
-(load "osx.el")
-(load "keyboard.el")
+
+(load-library "functions.el")
+
+(load-library "eproject.el")
+(load-library "my-anything.el")
+(load-library "osx.el")
+(load-library "keyboard.el")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -153,7 +154,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; SLIME
 (setq inferior-lisp-program "/Users/zickzackv/Source/ccl/dx86cl64")
-(slime-setup '(slime-repl))
+;(slime-setup '(slime-repl))
 (autoload 'slime "slime" "Interactive Lisp Development Environment" t)
 
 (autoload 'paredit-mode "paredit"
