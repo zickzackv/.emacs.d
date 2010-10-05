@@ -36,3 +36,5 @@
 
 (global-set-key (kbd "<f12>") 'magit-status)
 
+
+(cua-selection-mode +1)
