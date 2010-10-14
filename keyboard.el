@@ -22,7 +22,9 @@
 (global-set-key (kbd "C-x k")	     'anything-kill-current-buffer)
 (global-set-key (kbd "C-x b")	     'anything-for-buffers) 
 (global-set-key (kbd "C-x C-b")	     'anything-for-buffers) ; backup
-(global-set-key (kbd "C-x C-f")	     'anything-find-my-files) 
+(global-set-key (kbd "s-b")		     'anything-for-buffers)
+(global-set-key (kbd "C-x C-f")	     'anything-find-my-files)
+(global-set-key (kbd "s-o")	         'anything-find-my-files)
 
 (define-key global-map [menu-bar tools remember] '("Remember Something" . remember-other-frame))
 
