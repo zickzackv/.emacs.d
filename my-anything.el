@@ -30,7 +30,7 @@
 
 (setq-default anything-for-files-prefered-list 
 	      '(
-                anything-c-source-ffap-line
+		anything-c-source-ffap-line
 		anything-c-source-ffap-guesser
 		anything-c-source-file-cache
 		anything-c-source-files-in-current-dir+
@@ -54,7 +54,6 @@
 		  (expand-file-name default-directory))
               "Find Files or Url: " nil nil "*Anything Find Files*")))
 
-
 ;;; allows creating of new buffers
 (defun anything-for-buffers ()
   "Preconfigured `anything' for buffer."
@@ -63,14 +62,18 @@
                            anything-c-source-buffer-not-found)
 			 "*anything for buffers*"))
 
-
-;; only files and symbols
-(defun anything-project ()
+;; Search for symbols in file, gtags or org-file
+(defun anythin-symbol ()
   (interactive)
   (anything-at-point '(anything-c-source-imenu
-		       anything-c-source-gtags-select
-                       anything-c-source-eproject-files
-		       anything-c-source-org-headline)))
+					   anything-c-source-gtags-select
+					   anything-c-source-org-headline)))
+
+;; search for files
+(defun anything-project ()
+  (interactive)
+  (anything-at-point '(anything-c-source-eproject-files
+					   anything-c-source-recentf)))
 
 (defun anything-kill-current-buffer ()
   "Preconfigured `anything' to kill buffer ."

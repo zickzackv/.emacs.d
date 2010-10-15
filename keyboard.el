@@ -19,6 +19,7 @@
 ;; anything 					     
 (global-set-key (kbd "C-x C-z")	     'anything-project) ; anything backup call. E.g. in org-mode
 (global-set-key (kbd "s-t")		     'anything-project)
+(global-set-key (kbd "s-S-t")		 'anything-symbol)
 (global-set-key (kbd "C-x k")	     'anything-kill-current-buffer)
 (global-set-key (kbd "C-x b")	     'anything-for-buffers) 
 (global-set-key (kbd "C-x C-b")	     'anything-for-buffers) ; backup
