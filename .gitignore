@@ -4,5 +4,6 @@
 .gitignore
 .DS_Store
 .cvsignore
+.svn
 recent-files
 tramp
