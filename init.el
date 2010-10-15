@@ -18,6 +18,7 @@
 ;;
 ;; add all modes in ~/.emacs.d/modes to load-path
 (let* ((my-mode-dirs '("color-theme/"
+					   "yasnippet"
 					   "slime" 
 					   "org-mode/lisp"
 					   "haskell-2.7.0/"
@@ -222,9 +223,11 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; 
 ;; YaSnippet
-(require 'yasnippet-bundle)
-(setq yas/root-directory "~/emacs.d/snippets")
-
+(require 'yasnippet-bundle) ;; not yasnippet-bundle
+(setq yas/root-directory "~/.emacs.d/snippets")
+;; Load the snippets
+(yas/load-directory yas/root-directory)
+(yas/load-directory "~/.emacs.d/modes/yasnippet/snippets")
 
 (custom-set-variables
   ;; custom-set-variables was added by Custom.
