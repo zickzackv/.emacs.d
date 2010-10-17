@@ -4,6 +4,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (require 'eproject)
+(require 'eproject-extras)
 
 (define-project-type rails (generic)
   (look-for "Rakefile")

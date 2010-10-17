@@ -63,7 +63,7 @@
 			 "*anything for buffers*"))
 
 ;; Search for symbols in file, gtags or org-file
-(defun anythin-symbol ()
+(defun anything-symbol ()
   (interactive)
   (anything-at-point '(anything-c-source-imenu
 					   anything-c-source-gtags-select

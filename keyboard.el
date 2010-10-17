@@ -19,13 +19,17 @@
 ;; anything 					     
 (global-set-key (kbd "C-x C-z")	     'anything-project) ; anything backup call. E.g. in org-mode
 (global-set-key (kbd "s-t")		     'anything-project)
-(global-set-key (kbd "s-S-t")		 'anything-symbol)
+(global-set-key (kbd "s-T") 		 'anything-symbol)
 (global-set-key (kbd "C-x k")	     'anything-kill-current-buffer)
 (global-set-key (kbd "C-x b")	     'anything-for-buffers) 
 (global-set-key (kbd "C-x C-b")	     'anything-for-buffers) ; backup
 (global-set-key (kbd "s-b")		     'anything-for-buffers)
 (global-set-key (kbd "C-x C-f")	     'anything-find-my-files)
 (global-set-key (kbd "s-o")	         'anything-find-my-files)
+
+
+;; eProject
+(global-set-key (kbd "s-F") 'ack)
 
 (define-key global-map [menu-bar tools remember] '("Remember Something" . remember-other-frame))
 
@@ -38,6 +42,8 @@
 (global-set-key (kbd "<S-f2>") 'bm-previous)
 
 (global-set-key (kbd "<f12>") 'magit-status)
+
+
 
 
 (cua-selection-mode +1)
