@@ -174,7 +174,7 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; YAML mode
-
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (add-to-list 'auto-mode-alist '("\\.yml" . yaml-mode))
 (add-hook 'yaml-mode-hook '(lambda ()
                              (define-key yaml-mode-map "\C-m" 'newline-and-indent)))
@@ -184,6 +184,12 @@
 (setq inferior-lisp-program "/Users/zickzackv/Source/ccl/dx86cl64")
 ;(slime-setup '(slime-repl))
 (autoload 'slime "slime" "Interactive Lisp Development Environment" t)
+(require 'slime-autoloads)
+(slime-setup '(slime-repl))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Paredit
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (autoload 'paredit-mode "paredit"
   "Minor mode for pseudo-structurally editing Lisp code." t)
