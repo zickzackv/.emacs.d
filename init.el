@@ -57,10 +57,10 @@
       smtpmail-smtp-service          587
       smtpmail-debug-info            nil)
 
-(autoload 'compose-mail           "smtpmail" "Toggle whitespace visualization."        t)
+(autoload 'compose-mail "smtpmail" "Toggle whitespace visualization." t)
 
 (add-hook 'message-setup-hook '(lambda ()
-                                  (set-input-method "german-postfix")))
+								 (set-input-method "german-postfix")))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Ack
@@ -85,6 +85,8 @@
 (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
 ;; (turn-on-haskell-indentation)		
+(setq auto-mode-alist
+      (cons '("\\.hs" . haskell-mode) auto-mode-alist))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Markdown mode
