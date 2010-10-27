@@ -4,14 +4,6 @@
 ;;;; This file is a symbolic link to ~/.emacs.d/init.el under 
 ;;;; the name ~/.emacs . 
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Encoding and Input
-
-(setq default-input-method              "german-postfix") ;toggle with C-\
-(setq default-buffer-file-coding-system 'utf-8)
-(prefer-coding-system                   'utf-8)
-(set-default-coding-systems             'utf-8)
-
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Load Path
@@ -38,6 +30,7 @@
 ;; Loading configuration from file
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(load-library "my-encoding.el")
 (load-library "functions.el")
 (load-library "my-anything.el")
 (load-library "my-eproject.el")
