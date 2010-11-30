@@ -4,3 +4,12 @@
 [submodule "modes/magit.git"]
 	path = modes/magit.git
 	url = git://github.com/philjackson/magit.git
+[submodule "modes/cucumber"]
+	path = modes/cucumber
+	url = git://github.com/michaelklishin/cucumber.el.git
+[submodule "modes/rspec"]
+	path = modes/rspec
+	url = git://github.com/pezra/rspec-mode.git
+[submodule "modes/rvm"]
+	path = modes/rvm
+	url = git://github.com/senny/rvm.el.git
