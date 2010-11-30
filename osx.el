@@ -2,8 +2,6 @@
 ;; Mac OS X 
 
 ;; Display
-;; Use MS Consolas Font :-(
-(set-default-font "consolas" 't)
 (setq inhibit-startup-screen  t)
 (tool-bar-mode               -1)
 (set-default 'cursor-type  'bar)

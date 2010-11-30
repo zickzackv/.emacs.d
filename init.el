@@ -9,37 +9,39 @@
 ;; Load Path
 ;;
 ;; add all modes in ~/.emacs.d/modes to load-path
-(let* ((my-mode-dirs '("color-theme/"
-					   "yasnippet"
-					   "slime" 
-					   "org-mode/lisp"
-					   "haskell-2.7.0/"
-					   "anything/"
-					   "magit/"
-					   "eproject"
-					   "rhtml"))
-	   (modes-path (expand-file-name "~/.emacs.d/modes/")))
-  (add-to-list 'load-path modes-path)
-  (add-to-list 'load-path "~/.emacs.d/")
-  (mapcar '(lambda (dir) 
-			 (add-to-list 'load-path (concat modes-path dir)))
-		  my-mode-dirs))
-(add-to-list 'exec-path "/opt/local/bin/"); add ports binary dir
-(add-to-list 'exec-path "/usr/local/bin/"); add aspell binary
+(progn 
+  (add-to-list 'exec-path "/opt/local/bin/"); add ports binary dir
+  (add-to-list 'exec-path "/usr/local/bin/"); add aspell binary
+  (let* ((my-mode-dirs '("color-theme/"
+						 "yasnippet"
+						 "slime" 
+						 "org-mode/lisp"
+						 "haskell-2.7.0/"
+						 "anything/"
+						 "magit/"
+						 "eproject/"
+						 "rhtml/"
+						 "rvm/"
+						 "rspec/"
+						 "cucumber/"))
+		 (modes-path (expand-file-name "~/.emacs.d/modes/")))
+	(add-to-list 'load-path modes-path)
+	(add-to-list 'load-path "~/.emacs.d/")
+	(mapc '(lambda (dir) 
+			   (add-to-list 'load-path (concat modes-path dir)))
+			my-mode-dirs)))
 
 
 (setq ispell-program-name "aspell")
 
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Loading configuration from file
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 (load-library "my-encoding.el")
 (load-library "functions.el")
 (load-library "my-anything.el")
 (load-library "my-eproject.el")
-(load-library "osx.el")
+(load-library "display.el")
 (load-library "keyboard.el")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -59,7 +61,13 @@
 
 (add-hook 'message-setup-hook '(lambda ()
 								 (set-input-method "german-postfix")))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Autopair
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(autoload 'autopair-global-mode "autopair"  nil t)
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Ack
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -143,7 +151,7 @@
        ad-do-it))))
 
 (add-hook 'ruby-mode-hook (lambda ()
-			    (setq ruby-insert-encoding-magic-comment nil)))
+			    (setq ruby-insert-encoding-magic-comment 't)))
 
 (smart-tabs-advice ruby-indent-line ruby-indent-level)
 (setq ruby-indent-tabs-mode t)
@@ -179,6 +187,30 @@
 (add-hook 'yaml-mode-hook '(lambda ()
                              (define-key yaml-mode-map "\C-m" 'newline-and-indent)))
 (autoload  'yaml-mode "yaml-mode.el" "YAML Mode" t)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; RVM / Rspec / Cucumber / Feature mode
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(add-to-list 'auto-mode-alist '("\.feature$" . feature-mode))
+
+(set-default 'feature-default-i18n-file "~/.emacs.d/modes/cucumber/i18n.yml")
+(add-hook 'feature-mode-hook '(lambda ()
+							 (setq feature-default-i18n-file
+								   "~/.emacs.d/modes/cucumber/i18n.yml")))
+(autoload 'feature-mode "feature-mode.el" "Cucumber Feature Mode" t)
+
+(setq rspec-use-rvm 't)
+(require 'rvm)
+
+(rvm-use-default)
+
+(autoload 'rspec-parent-directory "rspec-mode.el" "Loading Rspec when using with feature mode" t)
+(autoload 'rspec-mode "rspec-mode.el" "Loading Rspec when using with feature mode" t)
+
+
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; SLIME
 (setq inferior-lisp-program "/Users/zickzackv/Source/ccl/dx86cl64")
@@ -266,6 +298,7 @@
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "#2e3434" :foreground "#eeeeec" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 130 :width normal :foundry "apple" :family "Anonymous_Pro"))))
+ '(default ((t :inherit nil :stipple nil :background "#2e3434" :foreground "#eeeeec" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :)))
  '(anything-file-name ((t (:foreground "White"))))
+ '(font-lock-string-face ((t (:foreground "#ad7fa8" :slant normal))))
  '(hl-line ((t (:background "black")))))

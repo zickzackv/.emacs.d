@@ -50,5 +50,8 @@
     (apply 'money-per-hour-and-minutes money h-m)))
 
 
+(defun global-autopair-mode (arg)
+  (interactive "p")
+  (autopair-global-mode arg))
 
 

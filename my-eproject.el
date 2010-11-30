@@ -8,7 +8,7 @@
 
 (define-project-type rails (generic)
   (look-for "Rakefile")
-  :relevant-files ("\\.rb$" "\\.erb$" "\\.yml$" "\\.css$")
+  :relevant-files ("\\.rb$" "\\.erb$" "\\.yml$" "\\.css$" "\\.feature$")
   :irrelevant-files ("vendor/.*" "tmp/.*" "doc/.*" "log/.*" "script/.*" "public/extjs/.*"))
 
 (define-project-type diplom (generic)
