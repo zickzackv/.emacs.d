@@ -44,6 +44,8 @@
 (global-set-key (kbd "<f12>") 'magit-status)
 
 
+;; yasnippet
+(global-set-key (kbd "s-/") 'yas/expand)
 
 
 (cua-selection-mode +1)
