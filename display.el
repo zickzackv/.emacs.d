@@ -51,7 +51,7 @@ Also turns off numbering in starred modes like *scratch*"
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Colors
 (require 'color-theme)
-(load "~/.emacs.d/color-theme-tangotango.el")
+(load "~/.emacs.d/color-theme-tangotango/color-theme-tangotango.el")
 (color-theme-tangotango)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

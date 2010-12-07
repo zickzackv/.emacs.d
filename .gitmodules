@@ -13,3 +13,6 @@
 [submodule "modes/rvm"]
 	path = modes/rvm
 	url = git://github.com/senny/rvm.el.git
+[submodule "color-theme-tangotango"]
+	path = color-theme-tangotango
+	url = git@github.com:zickzackv/color-theme-tangotango.git
