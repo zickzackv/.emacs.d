@@ -4,6 +4,7 @@
 ;;;; This file is a symbolic link to ~/.emacs.d/init.el under 
 ;;;; the name ~/.emacs . 
 
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Load Path
 ;;
