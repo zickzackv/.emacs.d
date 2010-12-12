@@ -60,7 +60,7 @@
 (autoload 'compose-mail "smtpmail" "Toggle whitespace visualization." t)
 
 (add-hook 'message-setup-hook '(lambda ()
-								 (set-input-method "german-postfix")))
+								 (set-input-method "my-german-postfix")))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Autopair
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -120,6 +120,7 @@
 (setq-default tab-width 4) ; or any other preferred value
 
 (setq cua-auto-tabify-rectangles nil)
+
 (defadvice align (around smart-tabs activate)
   (let ((indent-tabs-mode nil)) ad-do-it))
 (defadvice align-regexp (around smart-tabs activate)
@@ -201,15 +202,6 @@
 								   "~/.emacs.d/modes/cucumber/i18n.yml")))
 (autoload 'feature-mode "feature-mode.el" "Cucumber Feature Mode" t)
 
-(setq rspec-use-rvm 't)
-(require 'rvm)
-
-(rvm-use-default)
-
-(autoload 'rspec-parent-directory "rspec-mode.el" "Loading Rspec when using with feature mode" t)
-(autoload 'rspec-mode "rspec-mode.el" "Loading Rspec when using with feature mode" t)
-
-
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; SLIME
@@ -234,7 +226,8 @@
 ;; org-mode
 
 ;; ;; setting agenda directory and matching regexp
-(setq org-agenda-files '("~/Documents/Todo/"))
+(setq org-directory "~/Dropbox/Todo/")
+(setq org-agenda-files '("~/Dropbox/Todo/"))
 (setq org-agend-file-regexp "\\`[^.].*\\.org\\'")
 (setq org-enforce-todo-dependencies t)  ; headlines with TODO are not DONE
 (setq org-hide-leading-stars t)
@@ -265,7 +258,8 @@
 
 ;; use german postfix  as default input for org mod
 (add-hook 'org-load-hook '(lambda ()
-			    (set-input-method "german-postfix")))
+							(setq indent-tabs-mode nil)
+							(set-input-method "my-german-postfix")))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; 
