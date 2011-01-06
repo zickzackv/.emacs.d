@@ -200,8 +200,8 @@
 (add-hook 'feature-mode-hook '(lambda ()
 							 (setq feature-default-i18n-file
 								   "~/.emacs.d/modes/cucumber/i18n.yml")))
-(autoload 'feature-mode "feature-mode.el" "Cucumber Feature Mode" t)
 
+(autoload 'feature-mode "feature-mode.el" "Cucumber Feature Mode" t)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; SLIME
