@@ -10,8 +10,18 @@
 ;;
 ;; add all modes in ~/.emacs.d/modes to load-path
 (progn 
-  (add-to-list 'exec-path "/opt/local/bin/"); add ports binary dir
-  (add-to-list 'exec-path "/usr/local/bin/"); add aspell binary
+  (setenv "PATH"
+		  (concat
+		   "/usr/texbin:" 
+		   "/usr/local/bin:"
+		   "/opt/local/bin:"
+		   (getenv "PATH")
+		   )
+		  )
+  (add-to-list 'exec-path "/opt/local/bin/") ; add ports binary dir
+  (add-to-list 'exec-path "/usr/local/bin/") ; add aspell binary
+  (add-to-list 'exec-path "/usr/textbin/")	 ; add aspell binary
+
   (let* ((my-mode-dirs '("color-theme/"
 						 "yasnippet"
 						 "slime" 
@@ -27,9 +37,9 @@
 		 (modes-path (expand-file-name "~/.emacs.d/modes/")))
 	(add-to-list 'load-path modes-path)
 	(add-to-list 'load-path "~/.emacs.d/")
-	(mapc '(lambda (dir) 
-			   (add-to-list 'load-path (concat modes-path dir)))
-			my-mode-dirs)))
+	(mapc '(lambda (dir)
+			 (add-to-list 'load-path (concat modes-path dir)))
+		  my-mode-dirs)))
 
 
 (setq ispell-program-name "aspell")
@@ -241,7 +251,7 @@
 
 (setq org-todo-keyword-faces '(("NEXT" :foreground "white" :background "red" :weight bold)
 			       ("TODO" :foreground "red" :weight bold)
-			       ("STARTED" :foreground "blue" :weight bold)
+				   ("STARTED" :foreground "blue" :weight bold)
 			       ("DONE" :foreground "forest green" :weight bold)
 			       ("WAITING" :foreground "orange" :weight bold)
 			       ("SOMEDAY" :foreground "magenta" :weight bold)
@@ -257,9 +267,22 @@
 ;; (setq calendar-week-start-day 0)	; calendar weeks start on mondays
 
 ;; use german postfix  as default input for org mod
-(add-hook 'org-load-hook '(lambda ()
+(add-hook 'org-mode-hook '(lambda ()
+							(local-set-key "\M-n" 'outline-next-visible-heading)
+							(local-set-key "\M-p" 'outline-previous-visible-heading)
 							(setq indent-tabs-mode nil)
 							(set-input-method "my-german-postfix")))
+
+(require 'org-latex)
+(unless (boundp 'org-export-latex-classes)
+  (setq org-export-latex-classes nil))
+
+(add-to-list 'org-export-latex-classes
+             '("article"
+               "\\documentclass{article}"
+               ("\\section{%s}" . "\\section*{%s}")
+			   ("\\subsection{%s}" . "\\subsection*{%s}")
+               ("\\subsubsection{%s}" . "\\subsubsection*{%s}")))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; 
@@ -275,9 +298,13 @@
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
+ '(TeX-view-program-list (quote (("Preview.app" "open -a Preview.app %o"))))
+ '(TeX-view-program-selection (quote (((output-dvi style-pstricks) "Preview.app") (output-dvi "xdvi") (output-pdf "Preview.app") (output-html "xdg-open"))))
  '(blink-cursor-mode t)
  '(column-number-mode t)
  '(global-hl-line-mode t)
+ '(gud-gdb-command-name "gdb --annotate=1")
+ '(large-file-warning-threshold nil)
  '(make-backup-files nil)
  '(recentf-max-saved-items 40)
  '(recentf-mode t)
