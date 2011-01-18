@@ -61,8 +61,6 @@
 
 (add-hook 'message-setup-hook '(lambda ()
 								 (set-input-method "my-german-postfix")))
-
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Autopair
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -203,7 +201,6 @@
 							 (setq feature-default-i18n-file
 								   "~/.emacs.d/modes/cucumber/i18n.yml")))
 (autoload 'feature-mode "feature-mode.el" "Cucumber Feature Mode" t)
-
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; SLIME
