@@ -71,6 +71,8 @@
 
 (add-hook 'message-setup-hook '(lambda ()
 								 (set-input-method "my-german-postfix")))
+
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Autopair
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -127,7 +129,7 @@
 (add-to-list 'auto-mode-alist '("\\.builder" . ruby-mode))
 
 
-(setq-default tab-width 4) ; or any other preferred value
+(setq-default tab-width 2) ; or any other preferred value
 
 (setq cua-auto-tabify-rectangles nil)
 
@@ -164,8 +166,8 @@
 (add-hook 'ruby-mode-hook (lambda ()
 			    (setq ruby-insert-encoding-magic-comment 't)))
 
-(smart-tabs-advice ruby-indent-line ruby-indent-level)
-(setq ruby-indent-tabs-mode t)
+;;(smart-tabs-advice ruby-indent-line ruby-indent-level)
+;;(setq ruby-indent-tabs-mode t)
 
 (require 'align)
 
@@ -293,6 +295,28 @@
 (yas/load-directory yas/root-directory)
 (yas/load-directory "~/.emacs.d/modes/yasnippet/snippets")
 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; rcIRC
+
+;; Change user info
+(setq rcirc-default-nick "zickzackv")
+(setq rcirc-default-user-name "zickzackv")
+(setq rcirc-default-full-name "Fabian Otto")
+
+(setq rcirc-server-alist
+      '(("kornbluth.freenode.net" :channels ( "#netzke" ))))
+
+;; password in extra file
+(load "private.el")
+
+(add-hook 'rcirc-mode-hook
+               (lambda ()
+								 (require 'rcirc-notify)
+                 (rcirc-track-minor-mode 1)))
+
+
+
 (custom-set-variables
   ;; custom-set-variables was added by Custom.
   ;; If you edit it by hand, you could mess it up, so be careful.
@@ -315,11 +339,24 @@
  '(truncate-lines t))
 
 (custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
- '(default ((t :inherit nil :stipple nil :background "#2e3434" :foreground "#eeeeec" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :)))
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((t (:inherit nil :stipple nil
+						 :background "#2e3434"
+						 :foreground "#eeeeec"
+						 :inverse-video nil
+						 :box nil
+						 :strike-through nil
+						 :overline nil
+						 :underline nil
+						 :slant normal
+						 :weight normal
+						 :height 130
+						 :width normal
+						 :foundry "apple"
+						 :family "Anonymous_Pro"))))
  '(anything-file-name ((t (:foreground "White"))))
  '(font-lock-string-face ((t (:foreground "#ad7fa8" :slant normal))))
  '(hl-line ((t (:background "black")))))
