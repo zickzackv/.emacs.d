@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: action
+# key: action
+# --
+action :${1:name}, :text => I18n.t('$2', :default => '$3')
+  js_method :on_$1, <<-JS
+	  function() {
+		  ${4:alert('$3');}
+	}
+  JS
