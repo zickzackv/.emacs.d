@@ -16,15 +16,16 @@
 (setq scroll-conservatively 10000)
 
 (global-linum-mode t)
-(setq linum-format "%5d")				; 5 digits for linenumbers
+(setq linum-format "%5d")       ; 5 digits for linenumbers
 
 
 (defcustom linum-disabled-modes-list '(eshell-mode 
-									   wl-summary-mode
-									   compilation-mode 
-									   org-mode
-									   text-mode
-									   dired-mode)
+                     wl-summary-mode
+                     compilation-mode 
+                     org-mode
+                     text-mode
+                     dired-mode
+										 rcirc-mode)
   "* List of modes disabled when global linum mode is on"
   :type '(repeat (sexp :tag "Major mode"))
   :tag " Major modes where linum is disabled: "
@@ -42,7 +43,7 @@ defined in `linum-disabled-modes-list'. Changed by linum-off.
 Also turns off numbering in starred modes like *scratch*"
 
   (unless (or (minibufferp)
-			  (member major-mode linum-disabled-modes-list)
+        (member major-mode linum-disabled-modes-list)
               (string-match "*" (buffer-name)))
     (linum-mode 1)))
 
