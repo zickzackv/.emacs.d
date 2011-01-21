@@ -303,7 +303,7 @@
 (setq rcirc-default-full-name "Fabian Otto")
 
 (setq rcirc-server-alist
-      '(("kornbluth.freenode.net" :channels ( "#netzke" ))))
+      '(("kornbluth.freenode.net" :channels ("#lisp" "#emacs" "#netzke"))))
 
 ;; password in extra file
 (load "private.el")
@@ -312,7 +312,6 @@
                (lambda ()
 								 (require 'rcirc-notify)
                  (rcirc-track-minor-mode 1)))
-
 
 
 (custom-set-variables
@@ -324,37 +323,27 @@
  '(TeX-view-program-selection (quote (((output-dvi style-pstricks) "Preview.app") (output-dvi "xdvi") (output-pdf "Preview.app") (output-html "xdg-open"))))
  '(blink-cursor-mode t)
  '(column-number-mode t)
- '(global-hl-line-mode t)
+ '(global-hl-line-mode f)
  '(gud-gdb-command-name "gdb --annotate=1")
+ '(indicate-buffer-boundaries (quote right))
  '(large-file-warning-threshold nil)
  '(make-backup-files nil)
- '(recentf-max-saved-items 40)
+ '(next-line-add-newlines t)
+ '(recentf-max-saved-items 100)
  '(recentf-mode t)
  '(recentf-save-file "~/.emacs.d/recent-files")
  '(ruby-insert-encoding-magic-comment nil)
  '(safe-local-variable-values (quote ((Package . User) (Syntax . Common-Lisp) (Package . CCL) (encoding . utf-8))))
+ '(sentence-end-double-space nil)
  '(show-paren-mode t)
  '(truncate-lines t))
 
 (custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil
-						 :background "#2e3434"
-						 :foreground "#eeeeec"
-						 :inverse-video nil
-						 :box nil
-						 :strike-through nil
-						 :overline nil
-						 :underline nil
-						 :slant normal
-						 :weight normal
-						 :height 130
-						 :width normal
-						 :foundry "apple"
-						 :family "Anonymous_Pro"))))
+  ;; custom-set-faces was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
+ '(default ((t (:inherit nil :stipple nil :background "black" :foreground "#eeeeec" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 130 :width normal :foundry "apple" :family "Anonymous_Pro"))))
  '(anything-file-name ((t (:foreground "White"))))
  '(font-lock-string-face ((t (:foreground "#ad7fa8" :slant normal))))
  '(hl-line ((t (:background "black")))))
