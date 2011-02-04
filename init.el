@@ -53,6 +53,7 @@
 (load-library "my-eproject.el")
 (load-library "display.el")
 (load-library "keyboard.el")
+(load-library "latex.el")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Sending mail from within emacs to google
@@ -305,7 +306,7 @@
 (setq rcirc-server-alist
       '(("kornbluth.freenode.net" :channels ("#lisp" "#emacs" "#netzke"))))
 
-;; password in extra file
+;; password from external file
 (load "private.el")
 
 (add-hook 'rcirc-mode-hook
@@ -315,17 +316,16 @@
 
 
 (custom-set-variables
-  ;; custom-set-variables was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
- '(TeX-view-program-list (quote (("Preview.app" "open -a Preview.app %o"))))
- '(TeX-view-program-selection (quote (((output-dvi style-pstricks) "Preview.app") (output-dvi "xdvi") (output-pdf "Preview.app") (output-html "xdg-open"))))
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(blink-cursor-mode t)
  '(column-number-mode t)
  '(global-hl-line-mode f)
  '(gud-gdb-command-name "gdb --annotate=1")
  '(indicate-buffer-boundaries (quote right))
+ '(ispell-program-name "/usr/local/bin/aspell")
  '(large-file-warning-threshold nil)
  '(make-backup-files nil)
  '(next-line-add-newlines t)
@@ -333,17 +333,19 @@
  '(recentf-mode t)
  '(recentf-save-file "~/.emacs.d/recent-files")
  '(ruby-insert-encoding-magic-comment nil)
- '(safe-local-variable-values (quote ((Package . User) (Syntax . Common-Lisp) (Package . CCL) (encoding . utf-8))))
+ '(safe-local-variable-values (quote ((TeX-master . "../diplom") (TeX-master . t) (fill-colum . 100) (Package . User) (Syntax . Common-Lisp) (Package . CCL) (encoding . utf-8))))
  '(sentence-end-double-space nil)
  '(show-paren-mode t)
  '(truncate-lines t))
 
 (custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(default ((t (:inherit nil :stipple nil :background "black" :foreground "#eeeeec" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 130 :width normal :foundry "apple" :family "Anonymous_Pro"))))
  '(anything-file-name ((t (:foreground "White"))))
  '(font-lock-string-face ((t (:foreground "#ad7fa8" :slant normal))))
- '(hl-line ((t (:background "black")))))
+ '(hl-line ((t (:background "black"))))
+ '(isearch ((t (:background "DodgerBlue" :foreground "#2e3436"))))
+ '(lazy-highlight ((t (:background "LightSkyBlue" :foreground "#2e3436")))))
