@@ -4,9 +4,10 @@
 
 ;; Display
 (setq inhibit-startup-screen  t)
-(tool-bar-mode               -1)
-(set-default 'cursor-type  'bar)
-(blink-cursor-mode            t)
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
+(set-default 'cursor-type 'bar)
+(blink-cursor-mode t)
 
 ;; Smooth scrolling
 (setq mouse-wheel-scroll-amount '(3 ((shift) . 3))) ;; one line at a time

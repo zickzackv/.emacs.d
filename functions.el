@@ -44,14 +44,27 @@
 
 
 ;; convert a time (hh:mm) string to money
-(defun time-string-to-money (money string)   
-  (let ((h-m (mapcar 'string-to-number
-                   (split-string string ":"))))
-    (apply 'money-per-hour-and-minutes money h-m)))
+(defun time-string-to-money (string &rest money)
+	(unless money
+		(setq money 26))
+  (let* ((h-m (mapcar 'string-to-number
+                   (split-string string ":")))
+				(netto (apply 'money-per-hour-and-minutes money h-m))
+				(netto* (truncate netto))
+				(mwst  (* netto* 0.19))
+				(brutto (+ netto* mwst)))
+		(message "\nNetto: %s€\nMWST: %s€\nBrutto: %s€\n" netto* mwst brutto)
+		(list netto* mwst brutto)))
+
+;; (time-string-to-money "hh:mm")
 
 
 (defun global-autopair-mode (arg)
   (interactive "p")
   (autopair-global-mode arg))
+
+
+
+
 
 
