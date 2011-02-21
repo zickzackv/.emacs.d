@@ -12,6 +12,8 @@
 													 (TeX-fold-mode 1)
 													 (TeX-PDF-mode 1)
 													 (reftex-mode)
+													 (local-set-key "\M-n" 'forward-paragraph)
+													 (local-set-key "\M-p" 'backward-paragraph)
 													 ))
 
 	

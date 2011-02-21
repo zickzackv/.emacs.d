@@ -11,35 +11,36 @@
 ;; add all modes in ~/.emacs.d/modes to load-path
 (progn 
   (setenv "PATH"
-		  (concat
-		   "/usr/texbin:" 
-		   "/usr/local/bin:"
-		   "/opt/local/bin:"
-		   (getenv "PATH")
-		   )
-		  )
+					(concat
+					 "/usr/texbin:" 
+					 "/usr/local/bin:"
+					 "/opt/local/bin:"
+					 (getenv "PATH")
+					 )
+					)
   (add-to-list 'exec-path "/opt/local/bin/") ; add ports binary dir
   (add-to-list 'exec-path "/usr/local/bin/") ; add aspell binary
   (add-to-list 'exec-path "/usr/textbin/")	 ; add aspell binary
 
-  (let* ((my-mode-dirs '("color-theme/"
-						 "yasnippet"
-						 "slime" 
-						 "org-mode/lisp"
-						 "haskell-2.7.0/"
-						 "anything/"
-						 "magit/"
-						 "eproject/"
-						 "rhtml/"
-						 "rvm/"
-						 "rspec/"
-						 "cucumber/"))
-		 (modes-path (expand-file-name "~/.emacs.d/modes/")))
-	(add-to-list 'load-path modes-path)
-	(add-to-list 'load-path "~/.emacs.d/")
-	(mapc '(lambda (dir)
-			 (add-to-list 'load-path (concat modes-path dir)))
-		  my-mode-dirs)))
+  (let* ((my-mode-dirs '(
+												 "color-theme"
+												 "yasnippet"
+												 "slime" 
+												 "org-mode/lisp"
+												 "haskell-2.7.0/"
+												 "anything/"
+												 "magit/"
+												 "eproject/"
+												 "rhtml/"
+												 "rvm/"
+												 "rspec/"
+												 "cucumber/"))
+				 (modes-path (expand-file-name "~/.emacs.d/modes/")))
+		(add-to-list 'load-path modes-path)
+		(add-to-list 'load-path "~/.emacs.d/")
+		(mapc '(lambda (dir)
+						 (add-to-list 'load-path (concat modes-path dir)))
+					my-mode-dirs)))
 
 
 (setq ispell-program-name "aspell")
@@ -320,12 +321,13 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(blink-cursor-mode t)
+ '(ansi-color-names-vector ["#212526" "#ff4b4b" "#b4fa70" "#fce94f" "#729fcf" "#ad7fa8" "#8cc4ff" "#eeeeec"])
  '(column-number-mode t)
- '(global-hl-line-mode f)
+ '(cua-mode t nil (cua-base))
+ '(global-hl-line-mode nil)
  '(gud-gdb-command-name "gdb --annotate=1")
  '(indicate-buffer-boundaries (quote right))
- '(ispell-program-name "/usr/local/bin/aspell")
+ '(ispell-program-name "/usr/local/bin/aspell" t)
  '(large-file-warning-threshold nil)
  '(make-backup-files nil)
  '(next-line-add-newlines t)
@@ -336,16 +338,9 @@
  '(safe-local-variable-values (quote ((TeX-master . "../diplom") (TeX-master . t) (fill-colum . 100) (Package . User) (Syntax . Common-Lisp) (Package . CCL) (encoding . utf-8))))
  '(sentence-end-double-space nil)
  '(show-paren-mode t)
+ '(tool-bar-mode nil)
  '(truncate-lines t))
 
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "black" :foreground "#eeeeec" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 130 :width normal :foundry "apple" :family "Anonymous_Pro"))))
- '(anything-file-name ((t (:foreground "White"))))
- '(font-lock-string-face ((t (:foreground "#ad7fa8" :slant normal))))
- '(hl-line ((t (:background "black"))))
- '(isearch ((t (:background "DodgerBlue" :foreground "#2e3436"))))
- '(lazy-highlight ((t (:background "LightSkyBlue" :foreground "#2e3436")))))
+
+
+

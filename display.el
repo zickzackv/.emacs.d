@@ -19,7 +19,6 @@
 (global-linum-mode t)
 (setq linum-format "%5d")       ; 5 digits for linenumbers
 
-
 (defcustom linum-disabled-modes-list '(eshell-mode 
                      wl-summary-mode
                      compilation-mode 
@@ -53,10 +52,13 @@ Also turns off numbering in starred modes like *scratch*"
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Colors
 (require 'color-theme)
-(load "~/.emacs.d/color-theme-tangotango/color-theme-tangotango.el")
-(color-theme-tangotango)
+(color-theme-initialize)
+;(load "~/.emacs.d/color-theme-tangotango/color-theme-tangotango.el")
+(load "~/.emacs.d/color-theme-classic-mac/classic-mac.el")
+(color-theme-mac-classic)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Rename buffers uniquly with trailing path names
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'forward)
+
