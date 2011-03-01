@@ -53,7 +53,7 @@
 				(netto* (truncate netto))
 				(mwst  (* netto* 0.19))
 				(brutto (+ netto* mwst)))
-		(message "\nNetto: %s€\nMWST: %s€\nBrutto: %s€\n" netto* mwst brutto)
+		(message "\n    - Netto :: %s€\n    - MWST :: %s€\n    - Brutto :: %s€\n" netto* mwst brutto)
 		(list netto* mwst brutto)))
 
 ;; (time-string-to-money "hh:mm")
