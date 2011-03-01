@@ -276,10 +276,11 @@
 
 ;; use german postfix  as default input for org mod
 (add-hook 'org-mode-hook '(lambda ()
-							(local-set-key "\M-n" 'outline-next-visible-heading)
-							(local-set-key "\M-p" 'outline-previous-visible-heading)
-							(setq indent-tabs-mode nil)
-							(set-input-method "my-german-postfix")))
+														(setq org-special-ctrl-a/e 't)
+														(local-set-key "\M-n" 'outline-next-visible-heading)
+														(local-set-key "\M-p" 'outline-previous-visible-heading)
+														(setq indent-tabs-mode nil)
+														(set-input-method "my-german-postfix")))
 
 (require 'org-latex)
 (unless (boundp 'org-export-latex-classes)
@@ -289,7 +290,7 @@
              '("article"
                "\\documentclass{article}"
                ("\\section{%s}" . "\\section*{%s}")
-			   ("\\subsection{%s}" . "\\subsection*{%s}")
+							 ("\\subsection{%s}" . "\\subsection*{%s}")
                ("\\subsubsection{%s}" . "\\subsubsection*{%s}")))
 
 
