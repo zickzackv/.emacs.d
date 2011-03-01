@@ -43,7 +43,6 @@
 					my-mode-dirs)))
 
 
-(setq ispell-program-name "aspell")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Loading configuration from file
@@ -55,6 +54,13 @@
 (load-library "display.el")
 (load-library "keyboard.el")
 (load-library "latex.el")
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; ispell 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(setq ispell-program-name "/usr/local/bin/aspell")
+(setq ispell-dictionary "german8")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Sending mail from within emacs to google
@@ -264,9 +270,9 @@
 ;; ;; Exporting to ical 
 (setq org-combined-agenda-icalendar-file "~/Documents/Todo/org-mode.ics")
 
-;; starting week with mondy
+;; starting week with monday
 ;; (setq org-agenda-start-on-weekday 't)	;
-;; (setq calendar-week-start-day 0)	; calendar weeks start on mondays
+(setq calendar-week-start-day 0)	; calendar weeks start on mondays
 
 ;; use german postfix  as default input for org mod
 (add-hook 'org-mode-hook '(lambda ()
@@ -327,7 +333,6 @@
  '(global-hl-line-mode nil)
  '(gud-gdb-command-name "gdb --annotate=1")
  '(indicate-buffer-boundaries (quote right))
- '(ispell-program-name "/usr/local/bin/aspell" t)
  '(large-file-warning-threshold nil)
  '(make-backup-files nil)
  '(next-line-add-newlines t)
