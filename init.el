@@ -22,7 +22,7 @@
   (add-to-list 'exec-path "/usr/local/bin/") ; add aspell binary
   (add-to-list 'exec-path "/usr/textbin/")	 ; add aspell binary
 
-  (let* ((my-mode-dirs '(
+  (let* ((my-mode-dirs '("full-ack"
 												 "color-theme"
 												 "yasnippet"
 												 "slime" 
