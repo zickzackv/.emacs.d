@@ -26,6 +26,7 @@
 ;; Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 ;; MA 02111-1307 USA;
 
+ 
 (defun color-theme-mac-classic ()
   "Color theme by Jason Watson, based off the TextMate Mac Classic theme, created 2010-09-01"
   (interactive)
@@ -36,7 +37,8 @@
       (background-color . "#fff")
       (background-mode  . dark)
       (border-color     . "#000")
-      (cursor-color     . "#A7A7A7")
+      ;; red 
+      (cursor-color     . "Red")
       (mouse-color      . "sienna1"))
      
      (default ((t (:background "#fff" :foreground "#000"))))  
@@ -44,8 +46,8 @@
 
      ;;;; General 
      ;; Comment
-     (font-lock-comment-face ((t (:foreground "#B2B2B2" :italic t)))) 
-     (font-lock-comment-delimiter-face ((t (:foreground "#B2B2B2"))))
+     (font-lock-comment-face ((t (:foreground "Gray40" :normal t)))) 
+     (font-lock-comment-delimiter-face ((t (:foreground "Gray70"))))
     
      ;; Keyword
      (font-lock-keyword-face ((t (:foreground "#2C2CF6" :bold t)))) 
@@ -89,7 +91,8 @@
      (highline-face ((t (:background "#426BEE" ))))
 
      ;; Text Highlight
-     (region ((t (:background "#E4F1FE"))))
+     (region ((t (:background "Plum1"))))
+     (hl-line ((t (:inverse-video t))))
 
      ;; Cursor
      (text-cursor ((t (:background "aa0000" :foreground "black"))))
@@ -108,7 +111,17 @@
      (toolbar ((t (nil))))
      (underline ((nil (:underline nil))))	  
      (gui-element ((t (:background "#aa0000" :foreground "#00aa00"))))
+
+     ;; Org-Mode
+     (outline-4 ((t (:foreground "black" :weight bold))))
+ 
 	  
 )))
 
 (provide 'color-theme-mac-classic)
+
+
+
+
+
+

@@ -6,7 +6,9 @@
 (setq inhibit-startup-screen  t)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
-(set-default 'cursor-type 'bar)
+;; on of 'bar 'block 'bar
+(set-default 'cursor-type 'box)
+
 (blink-cursor-mode t)
 
 ;; Smooth scrolling

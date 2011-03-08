@@ -1,46 +1,48 @@
 ;;;; This file controlls the initial setup of Aquamacs.
 ;;;; Old School Emacs load ~/.emacs.el or ~/.emacs.d/init.el.
-;;;; Aquamacs loads ~/.emacs. 
-;;;; This file is a symbolic link to ~/.emacs.d/init.el under 
-;;;; the name ~/.emacs . 
+;;;; Aquamacs loads ~/.emacs.
+;;;; This file is a symbolic link to ~/.emacs.d/init.el under
+;;;; the name ~/.emacs .
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Load Path
 ;;
 ;; add all modes in ~/.emacs.d/modes to load-path
-(progn 
+(progn
   (setenv "PATH"
-					(concat
-					 "/usr/texbin:" 
-					 "/usr/local/bin:"
-					 "/opt/local/bin:"
-					 (getenv "PATH")
-					 )
-					)
+          (concat
+           "/usr/texbin:"
+           "/usr/local/bin:"
+           "/opt/local/bin:"
+           "/opt/local/sbin:"
+           (getenv "PATH")
+           )
+          )
   (add-to-list 'exec-path "/opt/local/bin/") ; add ports binary dir
   (add-to-list 'exec-path "/usr/local/bin/") ; add aspell binary
-  (add-to-list 'exec-path "/usr/textbin/")	 ; add aspell binary
+  (add-to-list 'exec-path "/usr/textbin/")   ; add aspell binary
 
-  (let* ((my-mode-dirs '("full-ack"
-												 "color-theme"
-												 "yasnippet"
-												 "slime" 
-												 "org-mode/lisp"
-												 "haskell-2.7.0/"
-												 "anything/"
-												 "magit/"
-												 "eproject/"
-												 "rhtml/"
-												 "rvm/"
-												 "rspec/"
-												 "cucumber/"))
-				 (modes-path (expand-file-name "~/.emacs.d/modes/")))
-		(add-to-list 'load-path modes-path)
-		(add-to-list 'load-path "~/.emacs.d/")
-		(mapc '(lambda (dir)
-						 (add-to-list 'load-path (concat modes-path dir)))
-					my-mode-dirs)))
+  (let* ((my-mode-dirs '("full-ack/"
+                         "color-theme/"
+                         "yasnippet/"
+                         "slime/"
+                         "org-mode/lisp/"
+                         "haskell-2.7.0/"
+                         "anything-config/"
+                         "anything-config/extensions"
+                         "magit/"
+                         "eproject/"
+                         "rhtml/"
+                         "rvm/"
+                         "rspec/"
+                         "cucumber/"))
+         (modes-path (expand-file-name "~/.emacs.d/modes/")))
+    (add-to-list 'load-path modes-path)
+    (add-to-list 'load-path "~/.emacs.d/")
+    (mapc '(lambda (dir)
+             (add-to-list 'load-path (concat modes-path dir)))
+          my-mode-dirs)))
 
 
 
@@ -56,7 +58,7 @@
 (load-library "latex.el")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; ispell 
+;; ispell
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (setq ispell-program-name "/usr/local/bin/aspell")
@@ -66,7 +68,7 @@
 ;; Sending mail from within emacs to google
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (setq starttls-use-gnutls t
-	  send-mail-function             'smtpmail-send-it
+      send-mail-function             'smtpmail-send-it
       message-send-mail-function     'smtpmail-send-it
       smtpmail-starttls-credentials  '(("smtp.gmail.com" 587 nil nil))
       smtpmail-auth-credentials      (expand-file-name "~/.authinfo")
@@ -78,7 +80,7 @@
 (autoload 'compose-mail "smtpmail" "Toggle whitespace visualization." t)
 
 (add-hook 'message-setup-hook '(lambda ()
-								 (set-input-method "my-german-postfix")))
+                 (set-input-method "my-german-postfix")))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Autopair
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -104,11 +106,11 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Haskell mode
-(autoload 'haskell-mode "~/.emacs.d/modes/haskell-mode-2.7.0/haskell-site-file.el" 
+(autoload 'haskell-mode "~/.emacs.d/modes/haskell-mode-2.7.0/haskell-site-file.el"
   "Loading Haskell mode only when needed." t)
 (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
-;; (turn-on-haskell-indentation)		
+;; (turn-on-haskell-indentation)
 (setq auto-mode-alist
       (cons '("\\.hs" . haskell-mode) auto-mode-alist))
 
@@ -118,7 +120,7 @@
 (setq auto-mode-alist
       (cons '("\\.markdown" . markdown-mode) auto-mode-alist))
 
-;; do not show the markdown window when opening the 
+;; do not show the markdown window when opening the
 ;; preview in the browser
 ;; uses a advice so that the actual funtion does not have to be
 ;; modified.
@@ -129,7 +131,7 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Ruby mode
-;; 
+;;
 (add-to-list 'auto-mode-alist '("\\.rb" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.rake" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.builder" . ruby-mode))
@@ -170,7 +172,7 @@
 ;;        ad-do-it))))
 
 (add-hook 'ruby-mode-hook (lambda ()
-			    (setq ruby-insert-encoding-magic-comment 't)))
+          (setq ruby-insert-encoding-magic-comment 't)))
 
 ;;(smart-tabs-advice ruby-indent-line ruby-indent-level)
 ;;(setq ruby-indent-tabs-mode t)
@@ -216,8 +218,8 @@
 
 (set-default 'feature-default-i18n-file "~/.emacs.d/modes/cucumber/i18n.yml")
 (add-hook 'feature-mode-hook '(lambda ()
-							 (setq feature-default-i18n-file
-								   "~/.emacs.d/modes/cucumber/i18n.yml")))
+               (setq feature-default-i18n-file
+                   "~/.emacs.d/modes/cucumber/i18n.yml")))
 
 (autoload 'feature-mode "feature-mode.el" "Cucumber Feature Mode" t)
 
@@ -252,35 +254,35 @@
 (setq org-odd-levels-only t)
 
 ;; ; use keys to switch state and do not trigger action when using S-<right>
-(setq org-use-fast-todo-selection t) 	
+(setq org-use-fast-todo-selection t)
 (setq org-treat-S-cursor-todo-selection-as-state-change nil)
 (setq org-todo-keywords '((sequence "NEXT(n)" "TODO(t)" "STARTED(s!)" "|" "DONE(d!/!)")
- 			  (sequence "WAITING(w@/!)" "SOMEDAY(S!)" "|" "CANCELLED(c@/!)")))
+          (sequence "WAITING(w@/!)" "SOMEDAY(S!)" "|" "CANCELLED(c@/!)")))
 
 (setq org-todo-keyword-faces '(("NEXT" :foreground "white" :background "red" :weight bold)
-			       ("TODO" :foreground "red" :weight bold)
-				   ("STARTED" :foreground "blue" :weight bold)
-			       ("DONE" :foreground "forest green" :weight bold)
-			       ("WAITING" :foreground "orange" :weight bold)
-			       ("SOMEDAY" :foreground "magenta" :weight bold)
-			       ("CANCELLED" :foreground "forest green" :weight bold)))
+             ("TODO" :foreground "red" :weight bold)
+           ("STARTED" :foreground "blue" :weight bold)
+             ("DONE" :foreground "forest green" :weight bold)
+             ("WAITING" :foreground "orange" :weight bold)
+             ("SOMEDAY" :foreground "magenta" :weight bold)
+             ("CANCELLED" :foreground "forest green" :weight bold)))
 
 (setq org-tag-alist '(("@Work" . ?w) ("@Home" . ?h) ("@Uni" . ?u) ("Email" . ?e) ("Telefon" . ?t)))
 
-;; ;; Exporting to ical 
+;; ;; Exporting to ical
 (setq org-combined-agenda-icalendar-file "~/Documents/Todo/org-mode.ics")
 
 ;; starting week with monday
-;; (setq org-agenda-start-on-weekday 't)	;
-(setq calendar-week-start-day 0)	; calendar weeks start on mondays
+;; (setq org-agenda-start-on-weekday 't)  ;
+(setq calendar-week-start-day 0)  ; calendar weeks start on mondays
 
 ;; use german postfix  as default input for org mod
 (add-hook 'org-mode-hook '(lambda ()
-														(setq org-special-ctrl-a/e 't)
-														(local-set-key "\M-n" 'outline-next-visible-heading)
-														(local-set-key "\M-p" 'outline-previous-visible-heading)
-														(setq indent-tabs-mode nil)
-														(set-input-method "my-german-postfix")))
+                            (setq org-special-ctrl-a/e 't)
+                            (local-set-key "\M-n" 'outline-next-visible-heading)
+                            (local-set-key "\M-p" 'outline-previous-visible-heading)
+                            (setq indent-tabs-mode nil)
+                            (set-input-method "my-german-postfix")))
 
 (require 'org-latex)
 (unless (boundp 'org-export-latex-classes)
@@ -290,11 +292,11 @@
              '("article"
                "\\documentclass{article}"
                ("\\section{%s}" . "\\section*{%s}")
-							 ("\\subsection{%s}" . "\\subsection*{%s}")
+               ("\\subsection{%s}" . "\\subsection*{%s}")
                ("\\subsubsection{%s}" . "\\subsubsection*{%s}")))
 
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; YaSnippet
 (require 'yasnippet-bundle) ;; not yasnippet-bundle
 (setq yas/root-directory "~/.emacs.d/snippets")
@@ -319,7 +321,7 @@
 
 (add-hook 'rcirc-mode-hook
                (lambda ()
-								 (require 'rcirc-notify)
+                 (require 'rcirc-notify)
                  (rcirc-track-minor-mode 1)))
 
 
@@ -333,6 +335,7 @@
  '(cua-mode t nil (cua-base))
  '(global-hl-line-mode nil)
  '(gud-gdb-command-name "gdb --annotate=1")
+ '(indent-tabs-mode nil)
  '(indicate-buffer-boundaries (quote right))
  '(large-file-warning-threshold nil)
  '(make-backup-files nil)
@@ -346,7 +349,4 @@
  '(show-paren-mode t)
  '(tool-bar-mode nil)
  '(truncate-lines t))
-
-
-
 
