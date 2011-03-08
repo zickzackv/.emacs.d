@@ -22,3 +22,6 @@
 [submodule "modes/full-ack"]
 	path = modes/full-ack
 	url = https://github.com/nschum/full-ack.git
+[submodule "modes/anything-config"]
+	path = modes/anything-config
+	url = git://repo.or.cz/anything-config.git
