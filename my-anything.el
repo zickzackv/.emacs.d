@@ -59,7 +59,7 @@
   "Preconfigured `anything' for buffer."
   (interactive)
   (anything-other-buffer '(anything-c-source-buffers+
-                           anything-c-source-buffer-not-found)
+                           anything-c-source-create)
 			 "*anything for buffers*"))
 
 ;; Search for symbols in file, gtags or org-file
