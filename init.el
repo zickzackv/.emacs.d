@@ -8,7 +8,8 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Load Path
 ;;
-;; add all modes in ~/.emacs.d/modes to load-path
+(setq custom-file "~/.emacs.d/custom.el")
+
 (progn
   (setenv "PATH"
           (concat
@@ -23,7 +24,9 @@
   (add-to-list 'exec-path "/usr/local/bin/") ; add aspell binary
   (add-to-list 'exec-path "/usr/textbin/")   ; add aspell binary
 
-  (let* ((my-mode-dirs '("full-ack/"
+  ;; add all modes in ~/.emacs.d/modes to load-path
+  (let* ((my-mode-dirs '("el-get/"
+                         "full-ack/"
                          "color-theme/"
                          "yasnippet/"
                          "slime/"
@@ -44,7 +47,7 @@
              (add-to-list 'load-path (concat modes-path dir)))
           my-mode-dirs)))
 
-
+;;  (require 'el-get)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Loading configuration from file
@@ -57,6 +60,10 @@
 (load-library "keyboard.el")
 (load-library "latex.el")
 
+
+(require 'package)
+(setq package-archives (cons '("tromey" . "http://tromey.com/elpa/") package-archives))
+(package-initialize)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ispell
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -316,37 +323,13 @@
 (setq rcirc-server-alist
       '(("kornbluth.freenode.net" :channels ("#lisp" "#emacs" "#netzke"))))
 
-;; password from external file
-(load "private.el")
-
 (add-hook 'rcirc-mode-hook
                (lambda ()
                  (require 'rcirc-notify)
                  (rcirc-track-minor-mode 1)))
 
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(ansi-color-names-vector ["#212526" "#ff4b4b" "#b4fa70" "#fce94f" "#729fcf" "#ad7fa8" "#8cc4ff" "#eeeeec"])
- '(column-number-mode t)
- '(cua-mode t nil (cua-base))
- '(global-hl-line-mode nil)
- '(gud-gdb-command-name "gdb --annotate=1")
- '(indent-tabs-mode nil)
- '(indicate-buffer-boundaries (quote right))
- '(large-file-warning-threshold nil)
- '(make-backup-files nil)
- '(next-line-add-newlines t)
- '(recentf-max-saved-items 100)
- '(recentf-mode t)
- '(recentf-save-file "~/.emacs.d/recent-files")
- '(ruby-insert-encoding-magic-comment nil)
- '(safe-local-variable-values (quote ((TeX-master . "../diplom") (TeX-master . t) (fill-colum . 100) (Package . User) (Syntax . Common-Lisp) (Package . CCL) (encoding . utf-8))))
- '(sentence-end-double-space nil)
- '(show-paren-mode t)
- '(tool-bar-mode nil)
- '(truncate-lines t))
+(load custom-file)
+;; password from external file
+(load "private.el")
 
