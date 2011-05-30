@@ -11,6 +11,7 @@
 
 ;; german input and moving between paragraphs with M-n and M-p
 (add-hook 'TeX-mode-hook (lambda ()
+                           (setq TeX-save-query nil)
 													 (set-input-method "my-german-postfix")
 													 (setq-default TeX-master nil) ; Query for master file.
 													 (TeX-fold-mode 1)
