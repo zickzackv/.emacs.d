@@ -77,7 +77,7 @@
       smtpmail-smtp-service          587
       smtpmail-debug-info            nil)
 
-(autoload 'compose-mail "smtpmail" "Toggle whitespace visualization." t)
+(autoload 'compose-mail "smtpmail" "" t)
 
 (add-hook 'message-setup-hook '(lambda ()
                  (set-input-method "my-german-postfix")))
@@ -87,8 +87,6 @@
 (autoload 'autopair-global-mode "autopair"  nil t)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Ack
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (autoload 'ack-same "full-ack" nil t)
@@ -96,6 +94,8 @@
 (autoload 'ack-find-same-file "full-ack" nil t)
 (autoload 'ack-find-file "full-ack" nil t)
 
+;; nginx mode
+(autoload 'nginx-mode "nginx-mode" nil t)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; GIT using magit
