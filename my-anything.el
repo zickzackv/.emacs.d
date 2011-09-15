@@ -31,11 +31,10 @@
 (setq anything-for-files-prefered-list  
       '(anything-c-source-ffap-line
        anything-c-source-ffap-guesser
-       anything-c-source-buffers-list
+       anything-c-source-files-in-current-dir+
        anything-c-source-recentf
        anything-c-source-bookmarks
        anything-c-source-file-cache
-       anything-c-source-files-in-current-dir+
        anything-c-source-find-files
        ))
 

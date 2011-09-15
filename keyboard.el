@@ -43,6 +43,7 @@
 (global-set-key (kbd "<S-f2>") 'bm-previous)
 
 (global-set-key (kbd "<f12>") 'magit-status)
+(global-set-key (kbd "<f11>") 'deft)
 
 
 ;; yasnippet

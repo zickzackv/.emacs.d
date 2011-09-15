@@ -25,3 +25,6 @@
 [submodule "modes/anything-config"]
 	path = modes/anything-config
 	url = git://repo.or.cz/anything-config.git
+[submodule "modes/deft"]
+	path = modes/deft
+	url = git://jblevins.org/git/deft.git

@@ -36,6 +36,7 @@
                          "anything-config/extensions"
                          "magit/"
                          "eproject/"
+                         "deft"
                          "rhtml/"
                          "rvm/"
                          "rspec/"
@@ -304,6 +305,13 @@
                ("\\section{%s}" . "\\section*{%s}")
                ("\\subsection{%s}" . "\\subsection*{%s}")
                ("\\subsubsection{%s}" . "\\subsubsection*{%s}")))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; deft
+(autoload 'deft "deft" "Notational Velocity Mode with org-mode" t)
+(setq deft-directory "~/Dropbox/Todo")
+(setq deft-extension "org")
+(setq deft-text-mode 'org-mode)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
