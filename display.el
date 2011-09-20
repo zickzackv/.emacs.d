@@ -55,9 +55,8 @@ Also turns off numbering in starred modes like *scratch*"
 ;; Colors
 (require 'color-theme)
 (color-theme-initialize)
-;(load "~/.emacs.d/color-theme-tangotango/color-theme-tangotango.el")
-(load "~/.emacs.d/color-theme-classic-mac/classic-mac.el")
-(color-theme-mac-classic)
+(load-library "color-theme-solarized.el")
+(color-theme-solarized-light)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Rename buffers uniquly with trailing path names

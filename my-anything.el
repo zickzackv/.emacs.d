@@ -28,17 +28,16 @@
                                  (eproject-close)))))
   "Open or close eProject projects.")
 
-(setq-default anything-for-files-prefered-list 
-	      '(
-		anything-c-source-ffap-line
-		anything-c-source-ffap-guesser
-		anything-c-source-file-cache
-		anything-c-source-files-in-current-dir+
-		anything-c-source-find-files
-		anything-c-source-recentf
-                ;; anything-c-source-eproject-buffers 
-		anything-c-source-buffers+
-		anything-c-source-create))
+(setq anything-for-files-prefered-list  
+      '(anything-c-source-ffap-line
+       anything-c-source-ffap-guesser
+       anything-c-source-buffers-list
+       anything-c-source-recentf
+       anything-c-source-bookmarks
+       anything-c-source-file-cache
+       anything-c-source-files-in-current-dir+
+       anything-c-source-find-files
+       ))
 
 (defun anything-find-my-files ()
   "Preconfigured `anything' for `find-file'."
@@ -47,20 +46,20 @@
          (file-p (and fap (file-exists-p fap)))
          (tap    (thing-at-point 'filename))
          (input  (if file-p 
-		     (expand-file-name tap) 
-		   fap))) 
+                     (expand-file-name tap) 
+                   fap))) 
     (anything anything-for-files-prefered-list
-	      (or input 
-		  (expand-file-name default-directory))
+              (or input 
+                  (expand-file-name default-directory))
               "Find Files or Url: " nil nil "*Anything Find Files*")))
 
-;;; allows creating of new buffers
-(defun anything-for-buffers ()
-  "Preconfigured `anything' for buffer."
-  (interactive)
-  (anything-other-buffer '(anything-c-source-buffers+
-                           anything-c-source-create)
-			 "*anything for buffers*"))
+;; ;;; allows creating of new buffers
+;; (defun anything-for-buffers ()
+;;   "Preconfigured `anything' for buffer."
+;;   (interactive)
+;;   (anything-other-buffer '(anything-c-source-buffers+
+;;                            anything-c-source-create)
+;; 			 "*anything for buffers*"))
 
 ;; Search for symbols in file, gtags or org-file
 (defun anything-symbol ()
