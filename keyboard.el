@@ -29,7 +29,7 @@
 (global-set-key (kbd "s-V")        'anything-show-kill-ring)
 
 
-;; eProject
+;; ack
 (global-set-key (kbd "s-F") 'ack)
 
 (define-key global-map [menu-bar tools remember] '("Remember Something" . remember-other-frame))
